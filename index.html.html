@@ -1,0 +1,3953 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pempek Tojotojo - The best Authentic from Lubuklinggau</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Noto+Serif:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      :root {
+        --primary: #800000;
+        --secondary: #228b22;
+        --accent: #ffd700;
+        --light: #fff;
+        --dark: #333;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Poppins", sans-serif;
+        line-height: 1.6;
+        color: var(--dark);
+        overflow-x: hidden;
+        background-color: #f8f9fa;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4 {
+        font-family: "Noto Serif", serif;
+        font-weight: 700;
+      }
+
+      .container {
+        width: 90%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 15px;
+      }
+
+      /* Header */
+      header {
+        background-color: var(--primary);
+        padding: 15px 0;
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 1000;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .header-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo {
+        color: var(--light);
+        font-size: 1.8rem;
+        font-weight: 700;
+        text-decoration: none;
+      }
+
+      .logo span {
+        color: var(--accent);
+      }
+
+      nav ul {
+        display: flex;
+        list-style: none;
+        align-items: center;
+      }
+
+      nav ul li {
+        margin-left: 25px;
+      }
+
+      nav ul li a {
+        color: var(--light);
+        text-decoration: none;
+        font-weight: 500;
+        transition: color 0.3s;
+      }
+
+      nav ul li a:hover {
+        color: var(--accent);
+      }
+
+      .social-icons {
+        display: flex;
+      }
+
+      .social-icons a {
+        color: var(--light);
+        margin-left: 15px;
+        font-size: 1.2rem;
+        transition: color 0.3s;
+      }
+
+      .social-icons a:hover {
+        color: var(--accent);
+      }
+
+      .mobile-menu {
+        display: none;
+        font-size: 1.5rem;
+        color: var(--light);
+        cursor: pointer;
+      }
+
+      /* User Menu Styles */
+      .user-menu {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+      }
+
+      .user-btn {
+        background: var(--accent);
+        color: var(--primary);
+        border: none;
+        padding: 8px 15px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-weight: 600;
+        transition: all 0.3s;
+        font-size: 0.9rem;
+      }
+
+      .user-btn:hover {
+        background: var(--light);
+        transform: translateY(-2px);
+      }
+
+      /* Cart Icon Styles */
+      .cart-icon {
+        position: relative;
+        margin-left: 20px;
+        cursor: pointer;
+        color: var(--light);
+        font-size: 1.2rem;
+      }
+
+      .cart-count {
+        position: absolute;
+        top: -8px;
+        right: -8px;
+        background-color: var(--accent);
+        color: var(--primary);
+        border-radius: 50%;
+        width: 20px;
+        height: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.8rem;
+        font-weight: bold;
+      }
+
+      /* PERBAIKAN: Modal Styles dengan Scroll */
+      .modal {
+        display: none;
+        position: fixed;
+        z-index: 2000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+      }
+
+      .modal-content {
+        background-color: var(--light);
+        margin: 5% auto;
+        padding: 30px;
+        border-radius: 10px;
+        width: 90%;
+        max-width: 500px;
+        position: relative;
+        animation: modalFadeIn 0.3s;
+        max-height: 85vh; /* Batas tinggi maksimum */
+        overflow-y: auto; /* Enable vertical scroll */
+      }
+
+      .cart-modal-content {
+        max-width: 800px;
+        width: 95%;
+        max-height: 90vh; /* Lebih tinggi untuk cart */
+      }
+
+      .serving-modal-content {
+        max-width: 500px;
+        max-height: 80vh;
+      }
+
+      @keyframes modalFadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(-50px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .close {
+        position: absolute;
+        right: 20px;
+        top: 15px;
+        font-size: 1.5rem;
+        cursor: pointer;
+        color: var(--dark);
+      }
+
+      .close:hover {
+        color: var(--primary);
+      }
+
+      /* PERBAIKAN: Form container yang bisa di-scroll */
+      .form-scroll-container {
+        max-height: 400px;
+        overflow-y: auto;
+        padding-right: 10px;
+        margin-bottom: 20px;
+      }
+
+      /* Scrollbar styling untuk form */
+      .form-scroll-container::-webkit-scrollbar {
+        width: 6px;
+      }
+
+      .form-scroll-container::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 10px;
+      }
+
+      .form-scroll-container::-webkit-scrollbar-thumb {
+        background: var(--primary);
+        border-radius: 10px;
+      }
+
+      .form-scroll-container::-webkit-scrollbar-thumb:hover {
+        background: #600000;
+      }
+
+      /* Serving Options Modal */
+      .serving-options-modal {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        margin: 20px 0;
+        max-height: 300px; /* PERBAIKAN: Tambahkan max-height */
+        overflow-y: auto; /* PERBAIKAN: Tambahkan scroll */
+        padding-right: 10px;
+      }
+
+      .serving-option-modal {
+        border: 2px solid #e0e0e0;
+        border-radius: 8px;
+        padding: 15px;
+        cursor: pointer;
+        transition: all 0.3s;
+      }
+
+      .serving-option-modal:hover {
+        border-color: var(--primary);
+      }
+
+      .serving-option-modal.selected {
+        border-color: var(--primary);
+        background-color: rgba(128, 0, 0, 0.1);
+      }
+
+      .serving-option-header {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 5px;
+      }
+
+      .serving-option-icon {
+        font-size: 1.5rem;
+      }
+
+      .serving-option-title {
+        font-weight: 600;
+        color: var(--primary);
+      }
+
+      .serving-option-description {
+        font-size: 0.9rem;
+        color: #666;
+        margin-left: 35px;
+      }
+
+      /* PERBAIKAN: Cart Items Styles dengan scroll yang lebih baik */
+      .cart-items {
+        max-height: 400px;
+        overflow-y: auto;
+        margin-bottom: 20px;
+        padding-right: 10px;
+      }
+
+      .cart-items::-webkit-scrollbar {
+        width: 6px;
+      }
+
+      .cart-items::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 10px;
+      }
+
+      .cart-items::-webkit-scrollbar-thumb {
+        background: var(--primary);
+        border-radius: 10px;
+      }
+
+      .cart-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px;
+        border-bottom: 1px solid #eee;
+      }
+
+      .cart-item-info {
+        flex: 1;
+      }
+
+      .cart-item-name {
+        font-weight: 600;
+        margin-bottom: 5px;
+      }
+
+      .cart-item-serving {
+        font-size: 0.85rem;
+        color: var(--primary);
+        font-weight: 500;
+        margin-top: 3px;
+      }
+
+      .cart-item-details {
+        font-size: 0.9rem;
+        color: #666;
+      }
+
+      .cart-item-price {
+        font-weight: 600;
+        color: var(--secondary);
+        margin-right: 15px;
+      }
+
+      .cart-item-actions {
+        display: flex;
+        align-items: center;
+      }
+
+      .cart-item-quantity {
+        display: flex;
+        align-items: center;
+        margin-right: 15px;
+      }
+
+      .cart-quantity-btn {
+        width: 30px;
+        height: 30px;
+        border: 1px solid var(--primary);
+        background: var(--light);
+        color: var(--primary);
+        border-radius: 5px;
+        font-size: 1rem;
+        font-weight: bold;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .cart-quantity-input {
+        width: 40px;
+        text-align: center;
+        margin: 0 5px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        padding: 5px;
+      }
+
+      .remove-item {
+        color: #dc3545;
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-size: 1.2rem;
+      }
+
+      .cart-total {
+        display: flex;
+        justify-content: space-between;
+        font-size: 1.2rem;
+        font-weight: 600;
+        padding: 15px 0;
+        border-top: 2px solid #eee;
+      }
+
+      .cart-empty {
+        text-align: center;
+        padding: 30px;
+        color: #666;
+      }
+
+      .cart-empty i {
+        font-size: 3rem;
+        margin-bottom: 15px;
+        color: #ddd;
+      }
+
+      .cart-actions {
+        display: flex;
+        gap: 10px;
+        margin-top: 20px;
+      }
+
+      .cart-actions .btn {
+        flex: 1;
+      }
+
+      /* Form Styles */
+      .form-group {
+        margin-bottom: 20px;
+        text-align: left;
+      }
+
+      .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 500;
+        color: var(--dark);
+        font-size: 0.95rem;
+      }
+
+      .form-group input,
+      .form-group select,
+      .form-group textarea {
+        width: 100%;
+        padding: 12px 15px;
+        border: 2px solid #e0e0e0;
+        border-radius: 8px;
+        font-family: "Poppins", sans-serif;
+        font-size: 1rem;
+        transition: all 0.3s;
+        background-color: var(--light);
+      }
+
+      .form-group input:focus,
+      .form-group select:focus,
+      .form-group textarea:focus {
+        outline: none;
+        border-color: var(--primary);
+        box-shadow: 0 0 0 3px rgba(128, 0, 0, 0.1);
+        background-color: #fff;
+      }
+
+      /* Quantity input dengan tombol +/- */
+      .quantity-control {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .quantity-btn {
+        width: 40px;
+        height: 40px;
+        border: 2px solid var(--primary);
+        background: var(--light);
+        color: var(--primary);
+        border-radius: 5px;
+        font-size: 1.2rem;
+        font-weight: bold;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s;
+      }
+
+      .quantity-btn:hover {
+        background: var(--primary);
+        color: var(--light);
+      }
+
+      .quantity-input {
+        width: 60px;
+        text-align: center;
+        font-weight: 600;
+        border: 2px solid #e0e0e0;
+        border-radius: 8px;
+        padding: 8px;
+      }
+
+      /* Radio button group untuk penyajian */
+      .serving-options {
+        display: flex;
+        gap: 15px;
+        margin-top: 5px;
+      }
+
+      .serving-option {
+        flex: 1;
+      }
+
+      .serving-option input[type="radio"] {
+        display: none;
+      }
+
+      .serving-option label {
+        display: block;
+        padding: 12px 15px;
+        border: 2px solid #e0e0e0;
+        border-radius: 8px;
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.3s;
+        font-weight: 500;
+        margin-bottom: 0;
+      }
+
+      .serving-option input[type="radio"]:checked + label {
+        border-color: var(--primary);
+        background-color: rgba(128, 0, 0, 0.1);
+        color: var(--primary);
+        font-weight: 600;
+      }
+
+      /* Modal form title */
+      .modal-content h2 {
+        color: var(--primary);
+        margin-bottom: 25px;
+        text-align: center;
+        font-size: 1.8rem;
+      }
+
+      /* Submit button styling */
+      .modal-content .btn {
+        width: 100%;
+        margin-top: 10px;
+        padding: 15px;
+        font-size: 1.1rem;
+        font-weight: 600;
+      }
+
+      /* Error message styling */
+      .error-message {
+        color: #dc3545;
+        font-size: 0.85rem;
+        margin-top: 5px;
+        display: none;
+      }
+
+      .form-group.error input,
+      .form-group.error select,
+      .form-group.error textarea {
+        border-color: #dc3545;
+      }
+
+      .form-group.error .error-message {
+        display: block;
+      }
+
+      /* Success message */
+      .success-message {
+        background: #d4edda;
+        color: #155724;
+        padding: 15px;
+        border-radius: 5px;
+        margin-bottom: 20px;
+        border-left: 4px solid #28a745;
+      }
+
+      /* Info message */
+      .info-message {
+        background: #d1ecf1;
+        color: #0c5460;
+        padding: 15px;
+        border-radius: 5px;
+        margin-bottom: 20px;
+        border-left: 4px solid #17a2b8;
+      }
+
+      /* PERBAIKAN: Order History Styles dengan scroll */
+      .order-item {
+        background: #f9f9f9;
+        padding: 15px;
+        margin-bottom: 10px;
+        border-radius: 5px;
+        border-left: 4px solid var(--primary);
+      }
+
+      .order-code {
+        font-weight: 600;
+        color: var(--primary);
+      }
+
+      .order-status {
+        display: inline-block;
+        padding: 3px 8px;
+        border-radius: 3px;
+        font-size: 0.8rem;
+        margin-left: 10px;
+      }
+
+      .status-pending {
+        background-color: #fff3cd;
+        color: #856404;
+      }
+
+      .status-completed {
+        background-color: #d1edff;
+        color: #004085;
+      }
+
+      /* PERBAIKAN: Checkout summary scrollable */
+      .order-summary {
+        max-height: 200px;
+        overflow-y: auto;
+        margin: 15px 0;
+        padding: 15px;
+        background: #f9f9f9;
+        border-radius: 8px;
+        border: 1px solid #e0e0e0;
+      }
+
+      /* Hero Section */
+      .hero {
+        background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+          url("img/LOGO PEMPEK TOJO TOJO 2.png");
+        background-size: 68%;
+        background-position: center 0.5px;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        text-align: center;
+        color: var(--light);
+        padding-top: 80px;
+      }
+
+      .hero-content {
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .hero h1 {
+        font-size: 3.5rem;
+        margin-bottom: 20px;
+        animation: fadeInDown 1s;
+      }
+
+      .hero p {
+        font-size: 1.3rem;
+        margin-bottom: 30px;
+        animation: fadeInUp 1s;
+      }
+
+      .btn {
+        display: inline-block;
+        background-color: var(--accent);
+        color: var(--primary);
+        padding: 12px 30px;
+        border-radius: 5px;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 1.1rem;
+        transition: all 0.3s;
+        animation: fadeIn 1.5s;
+        border: none;
+        cursor: pointer;
+      }
+
+      .btn:hover {
+        background-color: var(--light);
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      }
+
+      .btn:disabled {
+        background-color: #cccccc;
+        cursor: not-allowed;
+        transform: none;
+      }
+
+      .btn:disabled:hover {
+        background-color: #cccccc;
+        transform: none;
+        box-shadow: none;
+      }
+
+      .btn-secondary {
+        background-color: #6c757d;
+        color: white;
+      }
+
+      .btn-secondary:hover {
+        background-color: #5a6268;
+      }
+
+      .btn-link {
+        background: none;
+        color: var(--primary);
+        text-decoration: underline;
+        padding: 0;
+        margin-top: 15px;
+      }
+
+      .btn-link:hover {
+        background: none;
+        transform: none;
+        box-shadow: none;
+      }
+
+      /* Add to Cart Button */
+      .add-to-cart-btn {
+        background-color: var(--secondary);
+        color: white;
+        margin-top: 10px;
+      }
+
+      .add-to-cart-btn:hover {
+        background-color: #1e7a1e;
+      }
+
+      /* Menu Card with Cart Button */
+      .menu-card .menu-actions {
+        display: flex;
+        gap: 10px;
+        margin-top: 15px;
+      }
+
+      .menu-card .menu-actions .btn {
+        flex: 1;
+      }
+
+      /* About Section */
+      .about {
+        padding: 100px 0;
+        background-color: #f9f9f9;
+      }
+
+      .section-title {
+        text-align: center;
+        margin-bottom: 50px;
+        position: relative;
+      }
+
+      .section-title h2 {
+        font-size: 2.5rem;
+        color: var(--primary);
+        display: inline-block;
+      }
+
+      .section-title h2::after {
+        content: "";
+        display: block;
+        width: 70px;
+        height: 3px;
+        background-color: var(--accent);
+        margin: 10px auto;
+      }
+
+      .about-content {
+        display: flex;
+        align-items: center;
+        gap: 50px;
+      }
+
+      .about-text {
+        flex: 1;
+      }
+
+      .about-text h3 {
+        font-size: 1.8rem;
+        margin-bottom: 20px;
+        color: var(--primary);
+      }
+
+      .about-text p {
+        margin-bottom: 15px;
+      }
+
+      .about-image {
+        flex: 1;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      }
+
+      .about-image img {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+
+      /* Menu Section */
+      .menu {
+        padding: 100px 0;
+      }
+
+      .menu-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 30px;
+      }
+
+      .menu-card {
+        background-color: var(--light);
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s;
+        position: relative;
+      }
+
+      .menu-card:hover {
+        transform: translateY(-10px);
+      }
+
+      .menu-image {
+        height: 200px;
+        overflow: hidden;
+      }
+
+      .menu-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s;
+      }
+
+      .menu-card:hover .menu-image img {
+        transform: scale(1.1);
+      }
+
+      .menu-info {
+        padding: 20px;
+      }
+
+      .menu-info h3 {
+        font-size: 1.3rem;
+        margin-bottom: 10px;
+        color: var(--primary);
+      }
+
+      .menu-price {
+        font-weight: 600;
+        color: var(--secondary);
+        font-size: 1.2rem;
+        margin-bottom: 15px;
+      }
+
+      /* Login Required Overlay */
+      .login-required {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.7);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        border-radius: 10px;
+        padding: 20px;
+        text-align: center;
+        opacity: 0;
+        transition: opacity 0.3s;
+        pointer-events: none;
+      }
+
+      .menu-card:hover .login-required {
+        opacity: 1;
+      }
+
+      .login-required i {
+        font-size: 2rem;
+        margin-bottom: 10px;
+      }
+
+      /* Location Section */
+      .location {
+        padding: 100px 0;
+        background-color: #f9f9f9;
+      }
+
+      .location-content {
+        display: flex;
+        gap: 50px;
+        align-items: flex-start;
+      }
+
+      .location-info {
+        flex: 1;
+      }
+
+      .location-info h3 {
+        font-size: 1.8rem;
+        margin-bottom: 20px;
+        color: var(--primary);
+      }
+
+      .location-info p {
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+      }
+
+      .location-info i {
+        margin-right: 10px;
+        color: var(--primary);
+      }
+
+      .map {
+        flex: 1;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .map iframe {
+        width: 100%;
+        height: 400px;
+        border: none;
+      }
+
+      /* Contact Section */
+      .contact {
+        padding: 100px 0;
+      }
+
+      .contact-content {
+        text-align: center;
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .contact-content p {
+        font-size: 1.2rem;
+        margin-bottom: 30px;
+      }
+
+      .contact-icons {
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+        margin-bottom: 40px;
+      }
+
+      .contact-icon {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        color: var(--primary);
+        text-decoration: none;
+        transition: transform 0.3s;
+      }
+
+      .contact-icon:hover {
+        transform: translateY(-5px);
+      }
+
+      .contact-icon i {
+        font-size: 2.5rem;
+        margin-bottom: 10px;
+      }
+
+      .whatsapp-btn {
+        background-color: var(--secondary);
+        color: var(--light);
+      }
+
+      .whatsapp-btn:hover {
+        background-color: #1e7a1e;
+      }
+
+      /* Footer */
+      footer {
+        background-color: var(--primary);
+        color: var(--light);
+        padding: 30px 0;
+        text-align: center;
+      }
+
+      .footer-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .footer-logo {
+        font-size: 2rem;
+        font-weight: 700;
+        margin-bottom: 20px;
+      }
+
+      .footer-logo span {
+        color: var(--accent);
+      }
+
+      .footer-social {
+        margin-bottom: 20px;
+      }
+
+      .footer-social a {
+        color: var(--light);
+        margin: 0 10px;
+        font-size: 1.5rem;
+        transition: color 0.3s;
+      }
+
+      .footer-social a:hover {
+        color: var(--accent);
+      }
+
+      .copyright {
+        font-size: 0.9rem;
+        opacity: 0.8;
+      }
+
+      /* Animations */
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      @keyframes fadeInDown {
+        from {
+          opacity: 0;
+          transform: translateY(-20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .fade-in {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.6s, transform 0.6s;
+      }
+
+      .fade-in.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* Form Tabs */
+      .form-tabs {
+        display: flex;
+        margin-bottom: 20px;
+        border-bottom: 2px solid #e0e0e0;
+      }
+
+      .form-tab {
+        flex: 1;
+        padding: 12px;
+        text-align: center;
+        background: none;
+        border: none;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s;
+        color: #666;
+      }
+
+      .form-tab.active {
+        color: var(--primary);
+        border-bottom: 3px solid var(--primary);
+      }
+
+      .form-tab:hover {
+        color: var(--primary);
+      }
+
+      .form-content {
+        display: none;
+      }
+
+      .form-content.active {
+        display: block;
+      }
+
+      /* PERBAIKAN: Responsive adjustments untuk scroll */
+      @media (max-width: 992px) {
+        .about-content,
+        .location-content {
+          flex-direction: column;
+        }
+
+        .hero h1 {
+          font-size: 2.8rem;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .mobile-menu {
+          display: block;
+        }
+
+        nav {
+          position: fixed;
+          top: 70px;
+          left: -100%;
+          width: 100%;
+          background-color: var(--primary);
+          padding: 20px;
+          transition: left 0.3s;
+        }
+
+        nav.active {
+          left: 0;
+        }
+
+        nav ul {
+          flex-direction: column;
+        }
+
+        nav ul li {
+          margin: 10px 0;
+        }
+
+        .social-icons {
+          display: none;
+        }
+
+        .hero h1 {
+          font-size: 2.2rem;
+        }
+
+        .hero p {
+          font-size: 1.1rem;
+        }
+
+        .contact-icons {
+          flex-direction: column;
+          gap: 20px;
+        }
+
+        .user-menu {
+          flex-direction: column;
+          gap: 5px;
+        }
+
+        .serving-options {
+          flex-direction: column;
+          gap: 10px;
+        }
+
+        .menu-card .menu-actions {
+          flex-direction: column;
+        }
+
+        /* PERBAIKAN: Responsive modal adjustments */
+        .modal-content {
+          margin: 10% auto;
+          padding: 20px;
+          max-height: 80vh;
+        }
+
+        .form-scroll-container {
+          max-height: 300px;
+        }
+
+        .cart-items {
+          max-height: 300px;
+        }
+      }
+
+      @media (max-width: 576px) {
+        .hero h1 {
+          font-size: 1.8rem;
+        }
+
+        .section-title h2 {
+          font-size: 2rem;
+        }
+
+        .modal-content {
+          padding: 20px;
+          margin: 10% auto;
+        }
+      }
+
+      @media (max-height: 700px) {
+        .modal-content {
+          max-height: 95vh;
+        }
+
+        .form-scroll-container {
+          max-height: 250px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <header>
+      <div class="container header-container">
+        <a href="#" class="logo">Pempek <span>Tojotojo</span></a>
+        <div class="mobile-menu">
+          <i class="fas fa-bars"></i>
+        </div>
+        <nav>
+          <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">Tentang Kami</a></li>
+            <li><a href="#menu">Menu Pempek</a></li>
+            <li><a href="#drinks">Menu Minuman</a></li>
+            <li><a href="#location">Lokasi</a></li>
+            <li><a href="#contact">Kontak</a></li>
+            <li class="user-menu" id="userMenu" style="display: none">
+              <div class="cart-icon" id="cartIcon">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="cart-count" id="cartCount">0</span>
+              </div>
+              <button class="user-btn" id="orderHistoryBtn">
+                <i class="fas fa-history"></i> Riwayat
+              </button>
+              <button class="user-btn" id="logoutBtn">
+                <i class="fas fa-sign-out-alt"></i> Logout
+              </button>
+            </li>
+            <li class="user-menu" id="loginMenu">
+              <button class="user-btn" id="loginBtn">
+                <i class="fas fa-user"></i> Login
+              </button>
+            </li>
+          </ul>
+        </nav>
+        <div class="social-icons">
+          <a
+            href="https://www.instagram.com/pempektojotojo?utm_source=ig_web_button_share_sheet&igsh=MWhrdWdnNXBidXB6NA=="
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a
+            href="https://www.tiktok.com/@pempek.tojo.tojo?is_from_webapp=1&sender_device=pc"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <i class="fab fa-tiktok"></i>
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Serving Options Modal - DIPERBAIKI -->
+    <div id="servingModal" class="modal">
+      <div class="modal-content serving-modal-content">
+        <span class="close">&times;</span>
+        <h2>Pilih Penyajian</h2>
+
+        <div class="serving-options-modal" id="servingOptionsContainer">
+          <!-- Opsi penyajian akan ditampilkan di sini -->
+        </div>
+
+        <div
+          class="quantity-control"
+          style="justify-content: center; margin: 20px 0"
+        >
+          <button
+            type="button"
+            class="quantity-btn"
+            onclick="decreaseServingQuantity()"
+          >
+            -
+          </button>
+          <input
+            type="number"
+            id="servingQuantity"
+            min="1"
+            value="1"
+            class="quantity-input"
+          />
+          <button
+            type="button"
+            class="quantity-btn"
+            onclick="increaseServingQuantity()"
+          >
+            +
+          </button>
+        </div>
+
+        <button class="btn" id="confirmServingBtn">
+          <i class="fas fa-check"></i> Tambah ke Keranjang
+        </button>
+      </div>
+    </div>
+
+    <!-- Cart Modal - DIPERBAIKI -->
+    <div id="cartModal" class="modal">
+      <div class="modal-content cart-modal-content">
+        <span class="close">&times;</span>
+        <h2>Keranjang Belanja</h2>
+
+        <div class="cart-items" id="cartItems">
+          <!-- Item keranjang akan ditampilkan di sini -->
+        </div>
+
+        <div class="cart-total">
+          <span>Total:</span>
+          <span id="cartTotal">Rp 0</span>
+        </div>
+
+        <div class="cart-actions">
+          <button class="btn btn-secondary" id="continueShoppingBtn">
+            Lanjut Belanja
+          </button>
+          <button class="btn" id="checkoutBtn">Checkout</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Checkout Modal - DIPERBAIKI -->
+    <div id="checkoutModal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Checkout Pesanan</h2>
+
+        <div class="form-scroll-container">
+          <form id="checkoutForm">
+            <div class="form-group">
+              <label for="checkoutName">Nama Pemesan:</label>
+              <input
+                type="text"
+                id="checkoutName"
+                name="checkoutName"
+                required
+                placeholder="Masukkan nama lengkap"
+              />
+              <div class="error-message" id="checkoutNameError"></div>
+            </div>
+
+            <div class="form-group">
+              <label for="checkoutPhone">No. WhatsApp:</label>
+              <input
+                type="tel"
+                id="checkoutPhone"
+                name="checkoutPhone"
+                required
+                placeholder="Contoh: 081234567890"
+              />
+              <div class="error-message" id="checkoutPhoneError"></div>
+            </div>
+
+            <div class="form-group">
+              <label for="checkoutNotes">Catatan Tambahan:</label>
+              <textarea
+                id="checkoutNotes"
+                name="checkoutNotes"
+                rows="3"
+                placeholder="Contoh: Level pedas, tambah cuko, tanpa bawang, dll."
+              ></textarea>
+            </div>
+
+            <div class="order-summary">
+              <h3>Ringkasan Pesanan</h3>
+              <div id="checkoutSummary"></div>
+              <div class="cart-total">
+                <span>Total:</span>
+                <span id="checkoutTotal">Rp 0</span>
+              </div>
+            </div>
+
+            <button type="submit" class="btn">
+              <i class="fas fa-paper-plane"></i> Pesan Sekarang
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Auth Modal - DIPERBAIKI -->
+    <div id="authModal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Akun Pempek Tojotojo</h2>
+
+        <div class="form-tabs">
+          <button class="form-tab active" data-tab="login">Login</button>
+          <button class="form-tab" data-tab="register">Daftar</button>
+        </div>
+
+        <div class="form-scroll-container">
+          <!-- Login Form -->
+          <div id="loginForm" class="form-content active">
+            <form id="loginFormElement">
+              <div class="form-group">
+                <label for="username">Username:</label>
+                <input
+                  type="text"
+                  id="username"
+                  name="username"
+                  required
+                  placeholder="Masukkan username"
+                />
+              </div>
+              <div class="form-group">
+                <label for="password">Password:</label>
+                <input
+                  type="password"
+                  id="password"
+                  name="password"
+                  required
+                  placeholder="Masukkan password"
+                />
+              </div>
+              <button type="submit" class="btn">Login</button>
+            </form>
+            <div
+              style="
+                margin-top: 20px;
+                padding: 15px;
+                background: #f8f9fa;
+                border-radius: 5px;
+              "
+            ></div>
+          </div>
+
+          <!-- Register Form -->
+          <div id="registerForm" class="form-content">
+            <form id="registerFormElement">
+              <div class="form-group">
+                <label for="regName">Nama Lengkap:</label>
+                <input
+                  type="text"
+                  id="regName"
+                  name="regName"
+                  required
+                  placeholder="Masukkan nama lengkap"
+                />
+              </div>
+              <div class="form-group">
+                <label for="regPhone">No. WhatsApp:</label>
+                <input
+                  type="tel"
+                  id="regPhone"
+                  name="regPhone"
+                  required
+                  placeholder="Contoh: 081234567890"
+                />
+              </div>
+              <div class="form-group">
+                <label for="regUsername">Username:</label>
+                <input
+                  type="text"
+                  id="regUsername"
+                  name="regUsername"
+                  required
+                  placeholder="Pilih username"
+                />
+                <div class="error-message" id="usernameError"></div>
+              </div>
+              <div class="form-group">
+                <label for="regPassword">Password:</label>
+                <input
+                  type="password"
+                  id="regPassword"
+                  name="regPassword"
+                  required
+                  placeholder="Buat password"
+                />
+                <div class="error-message" id="passwordError"></div>
+              </div>
+              <div class="form-group">
+                <label for="regConfirmPassword">Konfirmasi Password:</label>
+                <input
+                  type="password"
+                  id="regConfirmPassword"
+                  name="regConfirmPassword"
+                  required
+                  placeholder="Ulangi password"
+                />
+                <div class="error-message" id="confirmPasswordError"></div>
+              </div>
+              <button type="submit" class="btn">Daftar Sekarang</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Order Modal - DIPERBAIKI -->
+    <div id="orderModal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2 id="orderModalTitle">Pesan Pempek</h2>
+
+        <div class="form-scroll-container">
+          <form id="orderForm">
+            <div class="form-group">
+              <label for="customerName">Nama Pemesan:</label>
+              <input
+                type="text"
+                id="customerName"
+                name="customerName"
+                required
+                placeholder="Masukkan nama lengkap"
+              />
+              <div class="error-message" id="customerNameError"></div>
+            </div>
+
+            <div class="form-group">
+              <label for="customerPhone">No. WhatsApp:</label>
+              <input
+                type="tel"
+                id="customerPhone"
+                name="customerPhone"
+                required
+                placeholder="Contoh: 081234567890"
+              />
+              <div class="error-message" id="customerPhoneError"></div>
+            </div>
+
+            <div class="form-group">
+              <label for="menuItem">Pilih Menu:</label>
+              <select
+                id="menuItem"
+                name="menuItem"
+                required
+                onchange="toggleServingOptions()"
+              >
+                <option value="">-- Pilih Menu --</option>
+
+                <!-- Menu Pempek -->
+                <option value="Paket Pempek Wong Kito 1">
+                  Paket Pempek Wong Kito 1 - Rp 24.700
+                </option>
+                <option value="Paket Pempek Wong Kito 2">
+                  Paket Pempek Wong Kito 2 - Rp 32.700
+                </option>
+                <option value="Paket Pempek Wong Kito 3">
+                  Paket Pempek Wong Kito 3 - Rp 25.700
+                </option>
+                <option value="Paket Pempek Dusun">
+                  Paket Pempek Dusun - Rp 125.000
+                </option>
+                <option value="Pempek Kapal Selam">
+                  Pempek Kapal Selam - Rp 25.000
+                </option>
+                <option value="Pempek Udang">Pempek Udang - Rp 25.000</option>
+                <option value="Pempek Adaan">Pempek Adaan - Rp 9.700</option>
+                <option value="Pempek Kulit">Pempek Kulit - Rp 9.700</option>
+                <option value="Pempek Lenjer">Pempek Lenjer - Rp 9.700</option>
+                <option value="Pempek Telor">Pempek Telor - Rp 9.700</option>
+
+                <!-- Menu Minuman -->
+                <option value="Ice Tea">Ice Tea - Rp 3.700</option>
+                <option value="Es Jambon">Es Jambon - Rp 7.700</option>
+                <option value="Mango Milk">Mango Milk - Rp 7.700</option>
+                <option value="Milk Tea">Milk Tea - Rp 7.700</option>
+                <option value="Coffe Beer/Sarsaparilla">
+                  Coffe Beer/Sarsaparilla - Rp 15.000
+                </option>
+                <option value="Lychee Milk">Lychee Milk - Rp 7.700</option>
+                <option value="Lychee Tea">Lychee Tea - Rp 6.700</option>
+                <option value="Kopi Gingseng">Kopi Gingseng - Rp 9.700</option>
+              </select>
+              <div class="error-message" id="menuItemError"></div>
+            </div>
+
+            <div class="form-group">
+              <label for="quantity">Jumlah:</label>
+              <div class="quantity-control">
+                <button
+                  type="button"
+                  class="quantity-btn"
+                  onclick="decreaseQuantity()"
+                >
+                  -
+                </button>
+                <input
+                  type="number"
+                  id="quantity"
+                  name="quantity"
+                  min="1"
+                  value="1"
+                  required
+                  class="quantity-input"
+                />
+                <button
+                  type="button"
+                  class="quantity-btn"
+                  onclick="increaseQuantity()"
+                >
+                  +
+                </button>
+              </div>
+              <div class="error-message" id="quantityError"></div>
+            </div>
+
+            <!-- Penyajian - Hanya untuk Pempek -->
+            <div class="form-group" id="servingTypeGroup">
+              <label>Penyajian:</label>
+              <div class="serving-options">
+                <div class="serving-option">
+                  <input
+                    type="radio"
+                    id="frozen"
+                    name="servingType"
+                    value="Frozen"
+                    checked
+                  />
+                  <label for="frozen">❄️ Frozen</label>
+                </div>
+                <div class="serving-option">
+                  <input
+                    type="radio"
+                    id="siapSantap"
+                    name="servingType"
+                    value="Siap Santap"
+                  />
+                  <label for="siapSantap">🍽️ Siap Santap</label>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="notes">Catatan Tambahan:</label>
+              <textarea
+                id="notes"
+                name="notes"
+                rows="3"
+                placeholder="Contoh: Level pedas, tambah cuko, tanpa bawang, dll."
+              ></textarea>
+            </div>
+
+            <button type="submit" class="btn">
+              <i class="fas fa-paper-plane"></i> Pesan Sekarang
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Order History Modal - DIPERBAIKI -->
+    <div id="orderHistoryModal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Riwayat Pesanan</h2>
+        <div
+          id="orderHistory"
+          style="max-height: 500px; overflow-y: auto; padding-right: 10px"
+        ></div>
+      </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+      <div class="container hero-content">
+        <h1>Pempek Tojotojo</h1>
+        <p>The best Authentic from Lubuklinggau</p>
+        <button class="btn" id="heroOrderBtn">Pesan Sekarang</button>
+        <p style="margin-top: 15px; font-size: 0.9rem">
+          Belum punya akun?
+          <button class="btn-link" onclick="openAuthModal('register')">
+            Daftar di sini
+          </button>
+        </p>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+      <div class="container">
+        <div class="section-title">
+          <h2>Tentang Kami</h2>
+        </div>
+        <div class="about-content fade-in">
+          <div class="about-text">
+            <h3>Sejarah Pempek Tojotojo</h3>
+            <p>
+              Pempek TojoTojo berdiri pada tahun 2022 di Lubuklinggau, berawal
+              dari keinginan untuk menghadirkan cita rasa pempek khas Palembang
+              yang autentik namun dengan sentuhan inovasi modern. Nama
+              "TojoTojo" terinspirasi dari kebersamaan dan semangat keluarga
+              yang menjadi pondasi utama dalam membangun usaha ini.
+            </p>
+            <p>
+              Dengan menggunakan bahan-bahan segar dan resep turun-temurun,
+              Pempek TojoTojo berhasil menarik perhatian masyarakat setempat
+              melalui kelezatan rasa dan pelayanan yang ramah. Dalam waktu
+              singkat, TojoTojo berkembang menjadi salah satu brand kuliner
+              lokal yang dipercaya untuk menyajikan pempek dengan cita rasa
+              premium dan tampilan yang menarik.
+            </p>
+            <h3>Visi & Misi</h3>
+            <p>
+              <strong>Visi:</strong> Menjadi brand pempek unggulan yang dikenal
+              secara nasional karena kualitas rasa, keaslian bahan, dan
+              pelayanan terbaik bagi pelanggan.
+            </p>
+            <p>
+              <strong>Misi:</strong> Menjaga cita rasa autentik pempek dengan
+              bahan-bahan berkualitas tinggi. Mengembangkan inovasi produk yang
+              tetap mempertahankan nilai tradisional. Memberikan pelayanan yang
+              ramah dan profesional kepada setiap pelanggan. Mendorong
+              pertumbuhan ekonomi lokal melalui kemitraan dengan pemasok dan
+              tenaga kerja daerah. Membangun brand yang modern tanpa
+              meninggalkan akar budaya kuliner Palembang.
+            </p>
+          </div>
+          <div class="about-image">
+            <img src="img/foto outlet.jpg" alt="Dapur Pempek Tojotojo" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section class="menu" id="menu">
+      <div class="container">
+        <div class="section-title">
+          <h2>Menu Pempek</h2>
+        </div>
+        <div class="menu-grid">
+          <!-- Paket Pempek Wong Kito 1 -->
+          <div class="menu-card fade-in">
+            <div class="menu-image">
+              <img src="img/wong kito 1.JPG" alt="Paket Pempek Wong Kito 1" />
+            </div>
+            <div class="menu-info">
+              <h3>Paket Pempek Wong Kito 1</h3>
+              <p class="menu-description">Adaan 1, Telor 1, Kulit 1</p>
+              <p class="menu-price">Rp 24.700</p>
+              <div class="menu-actions">
+                <button
+                  class="btn add-to-cart-btn"
+                  data-menu="Paket Pempek Wong Kito 1"
+                  data-price="24700"
+                  data-type="pempek"
+                >
+                  <i class="fas fa-cart-plus"></i> Keranjang
+                </button>
+                <button
+                  class="btn order-btn"
+                  data-menu="Paket Pempek Wong Kito 1"
+                  data-price="24700"
+                  data-type="pempek"
+                >
+                  Pesan Langsung
+                </button>
+              </div>
+            </div>
+            <div class="login-required">
+              <i class="fas fa-lock"></i>
+              <p>Login untuk memesan</p>
+              <button
+                class="btn"
+                style="margin-top: 10px"
+                onclick="openAuthModal('login')"
+              >
+                Login Sekarang
+              </button>
+            </div>
+          </div>
+
+          <!-- Paket Pempek Wong Kito 2 -->
+          <div class="menu-card fade-in">
+            <div class="menu-image">
+              <img src="img/wong kito 2.JPG" alt="Paket Pempek Wong Kito 2" />
+            </div>
+            <div class="menu-info">
+              <h3>Paket Pempek Wong Kito 2</h3>
+              <p class="menu-description">
+                Adaan 1, Telor 1, Kulit 1, Lenjer 1
+              </p>
+              <p class="menu-price">Rp 32.700</p>
+              <div class="menu-actions">
+                <button
+                  class="btn add-to-cart-btn"
+                  data-menu="Paket Pempek Wong Kito 2"
+                  data-price="32700"
+                  data-type="pempek"
+                >
+                  <i class="fas fa-cart-plus"></i> Keranjang
+                </button>
+                <button
+                  class="btn order-btn"
+                  data-menu="Paket Pempek Wong Kito 2"
+                  data-price="32700"
+                  data-type="pempek"
+                >
+                  Pesan Langsung
+                </button>
+              </div>
+            </div>
+            <div class="login-required">
+              <i class="fas fa-lock"></i>
+              <p>Login untuk memesan</p>
+              <button
+                class="btn"
+                style="margin-top: 10px"
+                onclick="openAuthModal('login')"
+              >
+                Login Sekarang
+              </button>
+            </div>
+          </div>
+
+          <!-- Paket Pempek Wong Kito 3 -->
+          <div class="menu-card fade-in">
+            <div class="menu-image">
+              <img src="img/wong kito 2.JPG" alt="Paket Pempek Wong Kito 3" />
+            </div>
+            <div class="menu-info">
+              <h3>Paket Pempek Wong Kito 3</h3>
+              <p class="menu-description">Udang 1, Kulit 1, Telur 1</p>
+              <p class="menu-price">Rp 25.700</p>
+              <div class="menu-actions">
+                <button
+                  class="btn add-to-cart-btn"
+                  data-menu="Paket Pempek Wong Kito 3"
+                  data-price="25700"
+                  data-type="pempek"
+                >
+                  <i class="fas fa-cart-plus"></i> Keranjang
+                </button>
+                <button
+                  class="btn order-btn"
+                  data-menu="Paket Pempek Wong Kito 3"
+                  data-price="25700"
+                  data-type="pempek"
+                >
+                  Pesan Langsung
+                </button>
+              </div>
+            </div>
+            <div class="login-required">
+              <i class="fas fa-lock"></i>
+              <p>Login untuk memesan</p>
+              <button
+                class="btn"
+                style="margin-top: 10px"
+                onclick="openAuthModal('login')"
+              >
+                Login Sekarang
+              </button>
+            </div>
+          </div>
+
+          <!-- Paket Pempek Dusun -->
+          <div class="menu-card fade-in">
+            <div class="menu-image">
+              <img src="img/paket dusun.JPG" alt="Paket Pempek Dusun" />
+            </div>
+            <div class="menu-info">
+              <h3>Paket Pempek Dusun</h3>
+              <p class="menu-description">
+                Adaan 2, Telor 2, Kulit 2, Lenjer 2, Kapal Selam 2
+              </p>
+              <p class="menu-price">Rp 125.000</p>
+              <div class="menu-actions">
+                <button
+                  class="btn add-to-cart-btn"
+                  data-menu="Paket Pempek Dusun"
+                  data-price="125000"
+                  data-type="pempek"
+                >
+                  <i class="fas fa-cart-plus"></i> Keranjang
+                </button>
+                <button
+                  class="btn order-btn"
+                  data-menu="Paket Pempek Dusun"
+                  data-price="125000"
+                  data-type="pempek"
+                >
+                  Pesan Langsung
+                </button>
+              </div>
+            </div>
+            <div class="login-required">
+              <i class="fas fa-lock"></i>
+              <p>Login untuk memesan</p>
+              <button
+                class="btn"
+                style="margin-top: 10px"
+                onclick="openAuthModal('login')"
+              >
+                Login Sekarang
+              </button>
+            </div>
+          </div>
+
+          <!-- Pempek Kapal Selam -->
+          <div class="menu-card fade-in">
+            <div class="menu-image">
+              <img src="img/pempek kapal selam.JPG" alt="Pempek Kapal Selam" />
+            </div>
+            <div class="menu-info">
+              <h3>Pempek Kapal Selam</h3>
+              <p class="menu-price">Rp 25.000</p>
+              <div class="menu-actions">
+                <button
+                  class="btn add-to-cart-btn"
+                  data-menu="Pempek Kapal Selam"
+                  data-price="25000"
+                  data-type="pempek"
+                >
+                  <i class="fas fa-cart-plus"></i> Keranjang
+                </button>
+                <button
+                  class="btn order-btn"
+                  data-menu="Pempek Kapal Selam"
+                  data-price="25000"
+                  data-type="pempek"
+                >
+                  Pesan Langsung
+                </button>
+              </div>
+            </div>
+            <div class="login-required">
+              <i class="fas fa-lock"></i>
+              <p>Login untuk memesan</p>
+              <button
+                class="btn"
+                style="margin-top: 10px"
+                onclick="openAuthModal('login')"
+              >
+                Login Sekarang
+              </button>
+            </div>
+          </div>
+
+          <!-- Pempek Udang -->
+          <div class="menu-card fade-in">
+            <div class="menu-image">
+              <img src="img/pempek udang.png" alt="Pempek Udang" />
+            </div>
+            <div class="menu-info">
+              <h3>Pempek Udang</h3>
+              <p class="menu-price">Rp 25.000</p>
+              <div class="menu-actions">
+                <button
+                  class="btn add-to-cart-btn"
+                  data-menu="Pempek Udang"
+                  data-price="25000"
+                  data-type="pempek"
+                >
+                  <i class="fas fa-cart-plus"></i> Keranjang
+                </button>
+                <button
+                  class="btn order-btn"
+                  data-menu="Pempek Udang"
+                  data-price="25000"
+                  data-type="pempek"
+                >
+                  Pesan Langsung
+                </button>
+              </div>
+            </div>
+            <div class="login-required">
+              <i class="fas fa-lock"></i>
+              <p>Login untuk memesan</p>
+              <button
+                class="btn"
+                style="margin-top: 10px"
+                onclick="openAuthModal('login')"
+              >
+                Login Sekarang
+              </button>
+            </div>
+          </div>
+
+          <!-- Pempek Adaan -->
+          <div class="menu-card fade-in">
+            <div class="menu-image">
+              <img src="img/pempek adaan.JPG" alt="Pempek Adaan" />
+            </div>
+            <div class="menu-info">
+              <h3>Pempek Adaan</h3>
+              <p class="menu-price">Rp 9.700</p>
+              <div class="menu-actions">
+                <button
+                  class="btn add-to-cart-btn"
+                  data-menu="Pempek Adaan"
+                  data-price="9700"
+                  data-type="pempek"
+                >
+                  <i class="fas fa-cart-plus"></i> Keranjang
+                </button>
+                <button
+                  class="btn order-btn"
+                  data-menu="Pempek Adaan"
+                  data-price="9700"
+                  data-type="pempek"
+                >
+                  Pesan Langsung
+                </button>
+              </div>
+            </div>
+            <div class="login-required">
+              <i class="fas fa-lock"></i>
+              <p>Login untuk memesan</p>
+              <button
+                class="btn"
+                style="margin-top: 10px"
+                onclick="openAuthModal('login')"
+              >
+                Login Sekarang
+              </button>
+            </div>
+          </div>
+
+          <!-- Pempek Kulit -->
+          <div class="menu-card fade-in">
+            <div class="menu-image">
+              <img src="img/pempek kulit.JPG" alt="Pempek Kulit" />
+            </div>
+            <div class="menu-info">
+              <h3>Pempek Kulit</h3>
+              <p class="menu-price">Rp 9.700</p>
+              <div class="menu-actions">
+                <button
+                  class="btn add-to-cart-btn"
+                  data-menu="Pempek Kulit"
+                  data-price="9700"
+                  data-type="pempek"
+                >
+                  <i class="fas fa-cart-plus"></i> Keranjang
+                </button>
+                <button
+                  class="btn order-btn"
+                  data-menu="Pempek Kulit"
+                  data-price="9700"
+                  data-type="pempek"
+                >
+                  Pesan Langsung
+                </button>
+              </div>
+            </div>
+            <div class="login-required">
+              <i class="fas fa-lock"></i>
+              <p>Login untuk memesan</p>
+              <button
+                class="btn"
+                style="margin-top: 10px"
+                onclick="openAuthModal('login')"
+              >
+                Login Sekarang
+              </button>
+            </div>
+          </div>
+
+          <!-- Pempek Lenjer -->
+          <div class="menu-card fade-in">
+            <div class="menu-image">
+              <img src="img/pempek lenjer.JPG" alt="Pempek Lenjer" />
+            </div>
+            <div class="menu-info">
+              <h3>Pempek Lenjer</h3>
+              <p class="menu-price">Rp 9.700</p>
+              <div class="menu-actions">
+                <button
+                  class="btn add-to-cart-btn"
+                  data-menu="Pempek Lenjer"
+                  data-price="9700"
+                  data-type="pempek"
+                >
+                  <i class="fas fa-cart-plus"></i> Keranjang
+                </button>
+                <button
+                  class="btn order-btn"
+                  data-menu="Pempek Lenjer"
+                  data-price="9700"
+                  data-type="pempek"
+                >
+                  Pesan Langsung
+                </button>
+              </div>
+            </div>
+            <div class="login-required">
+              <i class="fas fa-lock"></i>
+              <p>Login untuk memesan</p>
+              <button
+                class="btn"
+                style="margin-top: 10px"
+                onclick="openAuthModal('login')"
+              >
+                Login Sekarang
+              </button>
+            </div>
+          </div>
+
+          <!-- Pempek Telor -->
+          <div class="menu-card fade-in">
+            <div class="menu-image">
+              <img src="img/pempek telur.JPG" alt="Pempek Telor" />
+            </div>
+            <div class="menu-info">
+              <h3>Pempek Telor</h3>
+              <p class="menu-price">Rp 9.700</p>
+              <div class="menu-actions">
+                <button
+                  class="btn add-to-cart-btn"
+                  data-menu="Pempek Telor"
+                  data-price="9700"
+                  data-type="pempek"
+                >
+                  <i class="fas fa-cart-plus"></i> Keranjang
+                </button>
+                <button
+                  class="btn order-btn"
+                  data-menu="Pempek Telor"
+                  data-price="9700"
+                  data-type="pempek"
+                >
+                  Pesan Langsung
+                </button>
+              </div>
+            </div>
+            <div class="login-required">
+              <i class="fas fa-lock"></i>
+              <p>Login untuk memesan</p>
+              <button
+                class="btn"
+                style="margin-top: 10px"
+                onclick="openAuthModal('login')"
+              >
+                Login Sekarang
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Menu Minuman Section - SEMUA ITEM DITAMPILKAN -->
+    <section class="drinks" id="drinks">
+      <div class="container">
+        <div class="section-title">
+          <h2>Menu Minuman</h2>
+        </div>
+        <div class="menu-grid">
+          <!-- Ice Tea -->
+          <div class="menu-card fade-in">
+            <div
+              class="menu-image"
+              style="
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+              "
+            >
+              <i
+                class="fas fa-glass-whiskey"
+                style="font-size: 3rem; color: white"
+              ></i>
+            </div>
+            <div class="menu-info">
+              <h3>Ice Tea</h3>
+              <p class="menu-price">Rp 3.700</p>
+              <div class="menu-actions">
+                <button
+                  class="btn add-to-cart-btn"
+                  data-menu="Ice Tea"
+                  data-price="3700"
+                  data-type="minuman"
+                >
+                  <i class="fas fa-cart-plus"></i> Keranjang
+                </button>
+                <button
+                  class="btn order-btn"
+                  data-menu="Ice Tea"
+                  data-price="3700"
+                  data-type="minuman"
+                >
+                  Pesan Langsung
+                </button>
+              </div>
+            </div>
+            <div class="login-required">
+              <i class="fas fa-lock"></i>
+              <p>Login untuk memesan</p>
+              <button
+                class="btn"
+                style="margin-top: 10px"
+                onclick="openAuthModal('login')"
+              >
+                Login Sekarang
+              </button>
+            </div>
+          </div>
+
+          <!-- Es Jambon -->
+          <div class="menu-card fade-in">
+            <div
+              class="menu-image"
+              style="
+                background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+              "
+            >
+              <i
+                class="fas fa-wine-bottle"
+                style="font-size: 3rem; color: white"
+              ></i>
+            </div>
+            <div class="menu-info">
+              <h3>Es Jambon</h3>
+              <p class="menu-price">Rp 7.700</p>
+              <div class="menu-actions">
+                <button
+                  class="btn add-to-cart-btn"
+                  data-menu="Es Jambon"
+                  data-price="7700"
+                  data-type="minuman"
+                >
+                  <i class="fas fa-cart-plus"></i> Keranjang
+                </button>
+                <button
+                  class="btn order-btn"
+                  data-menu="Es Jambon"
+                  data-price="7700"
+                  data-type="minuman"
+                >
+                  Pesan Langsung
+                </button>
+              </div>
+            </div>
+            <div class="login-required">
+              <i class="fas fa-lock"></i>
+              <p>Login untuk memesan</p>
+              <button
+                class="btn"
+                style="margin-top: 10px"
+                onclick="openAuthModal('login')"
+              >
+                Login Sekarang
+              </button>
+            </div>
+          </div>
+
+          <!-- Mango Milk -->
+          <div class="menu-card fade-in">
+            <div
+              class="menu-image"
+              style="
+                background: linear-gradient(135deg, #ffd89b 0%, #19547b 100%);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+              "
+            >
+              <i
+                class="fas fa-glass-cheers"
+                style="font-size: 3rem; color: white"
+              ></i>
+            </div>
+            <div class="menu-info">
+              <h3>Mango Milk</h3>
+              <p class="menu-price">Rp 7.700</p>
+              <div class="menu-actions">
+                <button
+                  class="btn add-to-cart-btn"
+                  data-menu="Mango Milk"
+                  data-price="7700"
+                  data-type="minuman"
+                >
+                  <i class="fas fa-cart-plus"></i> Keranjang
+                </button>
+                <button
+                  class="btn order-btn"
+                  data-menu="Mango Milk"
+                  data-price="7700"
+                  data-type="minuman"
+                >
+                  Pesan Langsung
+                </button>
+              </div>
+            </div>
+            <div class="login-required">
+              <i class="fas fa-lock"></i>
+              <p>Login untuk memesan</p>
+              <button
+                class="btn"
+                style="margin-top: 10px"
+                onclick="openAuthModal('login')"
+              >
+                Login Sekarang
+              </button>
+            </div>
+          </div>
+
+          <!-- Milk Tea -->
+          <div class="menu-card fade-in">
+            <div
+              class="menu-image"
+              style="
+                background: linear-gradient(135deg, #4da0ff 0%, #d39d38 100%);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+              "
+            >
+              <i
+                class="fas fa-cocktail"
+                style="font-size: 3rem; color: white"
+              ></i>
+            </div>
+            <div class="menu-info">
+              <h3>Milk Tea</h3>
+              <p class="menu-price">Rp 7.700</p>
+              <div class="menu-actions">
+                <button
+                  class="btn add-to-cart-btn"
+                  data-menu="Milk Tea"
+                  data-price="7700"
+                  data-type="minuman"
+                >
+                  <i class="fas fa-cart-plus"></i> Keranjang
+                </button>
+                <button
+                  class="btn order-btn"
+                  data-menu="Milk Tea"
+                  data-price="7700"
+                  data-type="minuman"
+                >
+                  Pesan Langsung
+                </button>
+              </div>
+            </div>
+            <div class="login-required">
+              <i class="fas fa-lock"></i>
+              <p>Login untuk memesan</p>
+              <button
+                class="btn"
+                style="margin-top: 10px"
+                onclick="openAuthModal('login')"
+              >
+                Login Sekarang
+              </button>
+            </div>
+          </div>
+
+          <!-- Coffee Beer/Sarsaparilla -->
+          <div class="menu-card fade-in">
+            <div
+              class="menu-image"
+              style="
+                background: linear-gradient(135deg, #a8ff78 0%, #78ffd6 100%);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+              "
+            >
+              <i
+                class="fas fa-coconut"
+                style="font-size: 3rem; color: white"
+              ></i>
+            </div>
+            <div class="menu-info">
+              <h3>Coffee Beer/Sarsaparilla</h3>
+              <p class="menu-price">Rp 15.000</p>
+              <div class="menu-actions">
+                <button
+                  class="btn add-to-cart-btn"
+                  data-menu="Coffe Beer/Sarsaparilla"
+                  data-price="15000"
+                  data-type="minuman"
+                >
+                  <i class="fas fa-cart-plus"></i> Keranjang
+                </button>
+                <button
+                  class="btn order-btn"
+                  data-menu="Coffe Beer/Sarsaparilla"
+                  data-price="15000"
+                  data-type="minuman"
+                >
+                  Pesan Langsung
+                </button>
+              </div>
+            </div>
+            <div class="login-required">
+              <i class="fas fa-lock"></i>
+              <p>Login untuk memesan</p>
+              <button
+                class="btn"
+                style="margin-top: 10px"
+                onclick="openAuthModal('login')"
+              >
+                Login Sekarang
+              </button>
+            </div>
+          </div>
+
+          <!-- Lychee Milk -->
+          <div class="menu-card fade-in">
+            <div
+              class="menu-image"
+              style="
+                background: linear-gradient(135deg, #74b9ff 0%, #0984e3 100%);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+              "
+            >
+              <i class="fas fa-tint" style="font-size: 3rem; color: white"></i>
+            </div>
+            <div class="menu-info">
+              <h3>Lychee Milk</h3>
+              <p class="menu-description">Air mineral kemasan botol 600ml</p>
+              <p class="menu-price">Rp 7.700</p>
+              <div class="menu-actions">
+                <button
+                  class="btn add-to-cart-btn"
+                  data-menu="Lychee Milk"
+                  data-price="7700"
+                  data-type="minuman"
+                >
+                  <i class="fas fa-cart-plus"></i> Keranjang
+                </button>
+                <button
+                  class="btn order-btn"
+                  data-menu="Lychee Milk"
+                  data-price="7700"
+                  data-type="minuman"
+                >
+                  Pesan Langsung
+                </button>
+              </div>
+            </div>
+            <div class="login-required">
+              <i class="fas fa-lock"></i>
+              <p>Login untuk memesan</p>
+              <button
+                class="btn"
+                style="margin-top: 10px"
+                onclick="openAuthModal('login')"
+              >
+                Login Sekarang
+              </button>
+            </div>
+          </div>
+
+          <!-- Lychee Tea -->
+          <div class="menu-card fade-in">
+            <div
+              class="menu-image"
+              style="
+                background: linear-gradient(135deg, #8b4513 0%, #d2691e 100%);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+              "
+            >
+              <i
+                class="fas fa-coffee"
+                style="font-size: 3rem; color: white"
+              ></i>
+            </div>
+            <div class="menu-info">
+              <h3>Lychee Tea</h3>
+              <p class="menu-price">Rp 6.700</p>
+              <div class="menu-actions">
+                <button
+                  class="btn add-to-cart-btn"
+                  data-menu="Lychee Tea"
+                  data-price="6700"
+                  data-type="minuman"
+                >
+                  <i class="fas fa-cart-plus"></i> Keranjang
+                </button>
+                <button
+                  class="btn order-btn"
+                  data-menu="Lychee Tea"
+                  data-price="6700"
+                  data-type="minuman"
+                >
+                  Pesan Langsung
+                </button>
+              </div>
+            </div>
+            <div class="login-required">
+              <i class="fas fa-lock"></i>
+              <p>Login untuk memesan</p>
+              <button
+                class="btn"
+                style="margin-top: 10px"
+                onclick="openAuthModal('login')"
+              >
+                Login Sekarang
+              </button>
+            </div>
+          </div>
+
+          <!-- Kopi Gingseng -->
+          <div class="menu-card fade-in">
+            <div
+              class="menu-image"
+              style="
+                background: linear-gradient(135deg, #2d3436 0%, #636e72 100%);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+              "
+            >
+              <i
+                class="fas fa-coffee"
+                style="font-size: 3rem; color: white"
+              ></i>
+            </div>
+            <div class="menu-info">
+              <h3>Kopi Gingseng</h3>
+              <p class="menu-price">Rp 9.700</p>
+              <div class="menu-actions">
+                <button
+                  class="btn add-to-cart-btn"
+                  data-menu="Kopi Gingseng"
+                  data-price="9700"
+                  data-type="minuman"
+                >
+                  <i class="fas fa-cart-plus"></i> Keranjang
+                </button>
+                <button
+                  class="btn order-btn"
+                  data-menu="Kopi Gingseng"
+                  data-price="9700"
+                  data-type="minuman"
+                >
+                  Pesan Langsung
+                </button>
+              </div>
+            </div>
+            <div class="login-required">
+              <i class="fas fa-lock"></i>
+              <p>Login untuk memesan</p>
+              <button
+                class="btn"
+                style="margin-top: 10px"
+                onclick="openAuthModal('login')"
+              >
+                Login Sekarang
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Location Section -->
+    <section class="location" id="location">
+      <div class="container">
+        <div class="section-title">
+          <h2>Lokasi Toko</h2>
+        </div>
+        <div class="location-content fade-in">
+          <div class="location-info">
+            <h3>Kunjungi Kami</h3>
+            <p>
+              <i class="fas fa-map-marker-alt"></i> Jl. Bungur VIII, Punggawan,
+              Kec. Banjarsari, Kota Surakarta,Jawa Tengah (57132)
+            </p>
+            <p><i class="fas fa-clock"></i> Setiap hari 09.00–21.00</p>
+            <p><i class="fas fa-phone"></i> 0895-6110-67777</p>
+            <p><i class="fas fa-envelope"></i> info@pempektojotojo.com</p>
+            <p>
+              Kami berada di pusat kota Solo, mudah dijangkau dari berbagai
+              arah.
+            </p>
+          </div>
+          <div class="map">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3955.1260955666435!2d110.81481667319044!3d-7.561228074666574!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7a17c3532cd28f%3A0xca40a727142c9959!2sPempek%20Tojo%20Tojo!5e0!3m2!1sid!2sid!4v1760355246121!5m2!1sid!2sid"
+              width="600"
+              height="450"
+              style="border: 0"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+            ></iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+      <div class="container">
+        <div class="section-title">
+          <h2>Kontak & Sosial Media</h2>
+        </div>
+        <div class="contact-content fade-in">
+          <p>
+            Terhubung dengan kami melalui media sosial atau hubungi langsung
+            untuk pemesanan dan informasi lebih lanjut.
+          </p>
+          <div class="contact-icons">
+            <a
+              href="https://www.instagram.com/pempektojotojo?utm_source=ig_web_button_share_sheet&igsh=MWhrdWdnNXBidXB6NA=="
+              class="contact-icon"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <i class="fab fa-instagram"></i>
+              <span>Instagram</span>
+            </a>
+
+            <a
+              href="https://www.tiktok.com/@pempek.tojo.tojo?is_from_webapp=1&sender_device=pc"
+              class="contact-icon"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <i class="fab fa-tiktok"></i>
+              <span>TikTok</span>
+            </a>
+          </div>
+          <button class="btn whatsapp-btn" id="whatsappBtn">
+            <i class="fab fa-whatsapp"></i> Pesan via WhatsApp
+          </button>
+          <p style="margin-top: 15px; font-size: 0.9rem">
+            Belum punya akun?
+            <button class="btn-link" onclick="openAuthModal('register')">
+              Daftar di sini
+            </button>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-logo">Pempek <span>Tojotojo</span></div>
+          <div class="footer-social">
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-tiktok"></i></a>
+          </div>
+          <div class="copyright">
+            © 2025 Pempek Tojotojo. All rights reserved.
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // PERBAIKAN: Fungsi untuk mencegah scroll pada background ketika modal terbuka
+      function openModal(modal) {
+        modal.style.display = "block";
+        document.body.style.overflow = "hidden"; // Mencegah scroll pada body
+      }
+
+      function closeModal(modal) {
+        modal.style.display = "none";
+        document.body.style.overflow = "auto"; // Mengembalikan scroll pada body
+      }
+
+      // PERBAIKAN: Event listener untuk menutup modal dengan ESC key
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape") {
+          const openModals = document.querySelectorAll(
+            '.modal[style*="display: block"]'
+          );
+          openModals.forEach((modal) => {
+            closeModal(modal);
+          });
+        }
+      });
+
+      // PERBAIKAN: Mencegah event bubbling pada form scroll
+      document
+        .querySelectorAll(
+          ".form-scroll-container, .cart-items, .serving-options-modal"
+        )
+        .forEach((container) => {
+          container.addEventListener("wheel", function (e) {
+            e.stopPropagation();
+          });
+        });
+
+      // Data pengguna (disimpan di localStorage)
+      const initializeData = () => {
+        if (!localStorage.getItem("users")) {
+          const users = [
+            {
+              username: "customer",
+              password: "password123",
+              name: "Demo Customer",
+              phone: "081234567890",
+              registeredAt: new Date().toISOString(),
+            },
+            {
+              username: "admin",
+              password: "admin123",
+              name: "Administrator",
+              phone: "081234567891",
+              registeredAt: new Date().toISOString(),
+            },
+          ];
+          localStorage.setItem("users", JSON.stringify(users));
+        }
+
+        if (!localStorage.getItem("orders")) {
+          localStorage.setItem("orders", JSON.stringify([]));
+        }
+
+        // Inisialisasi keranjang
+        if (!localStorage.getItem("cart")) {
+          localStorage.setItem("cart", JSON.stringify([]));
+        }
+      };
+
+      // Inisialisasi keranjang
+      if (!localStorage.getItem("cart")) {
+        localStorage.setItem("cart", JSON.stringify([]));
+      }
+
+      // Variabel global untuk item yang akan ditambahkan
+      let currentMenuItem = null;
+      let currentMenuPrice = null;
+      let currentMenuType = null;
+
+      // Modal untuk pilihan penyajian
+      const servingModal = document.getElementById("servingModal");
+      const servingOptionsContainer = document.getElementById(
+        "servingOptionsContainer"
+      );
+      const servingQuantity = document.getElementById("servingQuantity");
+      const confirmServingBtn = document.getElementById("confirmServingBtn");
+
+      // Cart System
+      const cartModal = document.getElementById("cartModal");
+      const checkoutModal = document.getElementById("checkoutModal");
+      const cartIcon = document.getElementById("cartIcon");
+      const cartCount = document.getElementById("cartCount");
+      const cartItems = document.getElementById("cartItems");
+      const cartTotal = document.getElementById("cartTotal");
+      const continueShoppingBtn = document.getElementById(
+        "continueShoppingBtn"
+      );
+      const checkoutBtn = document.getElementById("checkoutBtn");
+      const checkoutForm = document.getElementById("checkoutForm");
+      const checkoutSummary = document.getElementById("checkoutSummary");
+      const checkoutTotal = document.getElementById("checkoutTotal");
+      const addToCartButtons = document.querySelectorAll(".add-to-cart-btn");
+
+      // Initialize cart
+      function initializeCart() {
+        updateCartDisplay();
+      }
+
+      // Fungsi untuk menampilkan modal pilihan penyajian
+      function showServingOptions(menuName, price, type) {
+        currentMenuItem = menuName;
+        currentMenuPrice = price;
+        currentMenuType = type;
+
+        // Kosongkan container
+        servingOptionsContainer.innerHTML = "";
+
+        if (type === "pempek") {
+          // Opsi untuk pempek
+          servingOptionsContainer.innerHTML = `
+            <div class="serving-option-modal" onclick="selectServingOption(this)" data-serving="Frozen">
+              <div class="serving-option-header">
+                <div class="serving-option-icon">❄️</div>
+                <div class="serving-option-title">Frozen</div>
+              </div>
+              <div class="serving-option-description">
+                Pempek mentah beku, siap dimasak di rumah. Cocok untuk dibawa pulang atau dikirim.
+              </div>
+            </div>
+            <div class="serving-option-modal" onclick="selectServingOption(this)" data-serving="Siap Santap">
+              <div class="serving-option-header">
+                <div class="serving-option-icon">🍽️</div>
+                <div class="serving-option-title">Siap Santap</div>
+              </div>
+              <div class="serving-option-description">
+                Pempek sudah matang dengan kuah cuko, siap langsung disantap.
+              </div>
+            </div>
+          `;
+        } else if (type === "minuman") {
+          // Opsi untuk minuman
+          servingOptionsContainer.innerHTML = `
+            <div class="serving-option-modal" onclick="selectServingOption(this)" data-serving="Dine In">
+              <div class="serving-option-header">
+                <div class="serving-option-icon">🏪</div>
+                <div class="serving-option-title">Dine In</div>
+              </div>
+              <div class="serving-option-description">
+                Menikmati minuman langsung di tempat. Dilayani dalam gelas.
+              </div>
+            </div>
+            <div class="serving-option-modal" onclick="selectServingOption(this)" data-serving="Takeaway">
+              <div class="serving-option-header">
+                <div class="serving-option-icon">🥤</div>
+                <div class="serving-option-title">Takeaway</div>
+              </div>
+              <div class="serving-option-description">
+                Minuman dikemas untuk dibawa pulang. Dalam kemasan cup dengan tutup.
+              </div>
+            </div>
+          `;
+        }
+
+        // Reset quantity
+        servingQuantity.value = 1;
+
+        // Pilih opsi pertama secara default
+        const firstOption = servingOptionsContainer.querySelector(
+          ".serving-option-modal"
+        );
+        if (firstOption) {
+          selectServingOption(firstOption);
+        }
+
+        openModal(servingModal);
+      }
+
+      // Fungsi untuk memilih opsi penyajian
+      function selectServingOption(element) {
+        // Hapus selected class dari semua opsi
+        document.querySelectorAll(".serving-option-modal").forEach((opt) => {
+          opt.classList.remove("selected");
+        });
+
+        // Tambah selected class ke opsi yang dipilih
+        element.classList.add("selected");
+      }
+
+      // Fungsi untuk mendapatkan opsi penyajian yang dipilih
+      function getSelectedServing() {
+        const selectedOption = servingOptionsContainer.querySelector(
+          ".serving-option-modal.selected"
+        );
+        return selectedOption
+          ? selectedOption.getAttribute("data-serving")
+          : null;
+      }
+
+      // Fungsi quantity untuk modal penyajian
+      function increaseServingQuantity() {
+        servingQuantity.value = parseInt(servingQuantity.value) + 1;
+      }
+
+      function decreaseServingQuantity() {
+        if (parseInt(servingQuantity.value) > 1) {
+          servingQuantity.value = parseInt(servingQuantity.value) - 1;
+        }
+      }
+
+      // Konfirmasi tambah ke keranjang
+      confirmServingBtn.addEventListener("click", function () {
+        const selectedServing = getSelectedServing();
+        const quantity = parseInt(servingQuantity.value);
+
+        if (!selectedServing) {
+          alert("Silakan pilih opsi penyajian!");
+          return;
+        }
+
+        // Tambah ke keranjang
+        addToCartWithServing(
+          currentMenuItem,
+          currentMenuPrice,
+          currentMenuType,
+          selectedServing,
+          quantity
+        );
+        closeModal(servingModal);
+      });
+
+      // Fungsi untuk menambahkan item ke keranjang dengan penyajian
+      function addToCartWithServing(menuName, price, type, serving, quantity) {
+        if (!localStorage.getItem("isLoggedIn")) {
+          alert(
+            "Silakan login terlebih dahulu untuk menambahkan ke keranjang!"
+          );
+          openAuthModal("login");
+          return;
+        }
+
+        const cart = JSON.parse(localStorage.getItem("cart"));
+        const existingItem = cart.find(
+          (item) => item.menuName === menuName && item.servingType === serving
+        );
+
+        if (existingItem) {
+          existingItem.quantity += quantity;
+        } else {
+          cart.push({
+            id: Date.now().toString(),
+            menuName: menuName,
+            price: parseInt(price),
+            quantity: quantity,
+            type: type,
+            servingType: serving,
+          });
+        }
+
+        localStorage.setItem("cart", JSON.stringify(cart));
+        updateCartDisplay();
+
+        // Show confirmation
+        showCartNotification(
+          `${menuName} (${serving}) ditambahkan ke keranjang`
+        );
+      }
+
+      // Update fungsi addToCart untuk menampilkan modal pilihan penyajian
+      function addToCart(menuName, price, type) {
+        showServingOptions(menuName, price, type);
+      }
+
+      // Update cart display
+      function updateCartDisplay() {
+        const cart = JSON.parse(localStorage.getItem("cart"));
+        let total = 0;
+        let count = 0;
+
+        // Update cart count
+        cart.forEach((item) => {
+          count += item.quantity;
+          total += item.price * item.quantity;
+        });
+
+        cartCount.textContent = count;
+
+        // Update cart items
+        if (cart.length === 0) {
+          cartItems.innerHTML = `
+            <div class="cart-empty">
+              <i class="fas fa-shopping-cart"></i>
+              <p>Keranjang belanja kosong</p>
+            </div>
+          `;
+          checkoutBtn.disabled = true;
+        } else {
+          cartItems.innerHTML = cart
+            .map(
+              (item) => `
+            <div class="cart-item">
+              <div class="cart-item-info">
+                <div class="cart-item-name">${item.menuName}</div>
+                <div class="cart-item-serving">${item.servingType}</div>
+                ${
+                  item.type === "pempek" && item.servingType === "Frozen"
+                    ? `<div class="cart-item-details">Pempek mentah beku</div>`
+                    : item.type === "pempek" &&
+                      item.servingType === "Siap Santap"
+                    ? `<div class="cart-item-details">Pempek matang dengan kuah</div>`
+                    : item.type === "minuman" && item.servingType === "Dine In"
+                    ? `<div class="cart-item-details">Dilayani di tempat</div>`
+                    : `<div class="cart-item-details">Dikemas untuk dibawa</div>`
+                }
+              </div>
+              <div class="cart-item-actions">
+                <div class="cart-item-price">Rp ${item.price.toLocaleString(
+                  "id-ID"
+                )}</div>
+                <div class="cart-item-quantity">
+                  <button class="cart-quantity-btn" onclick="decreaseCartQuantity('${
+                    item.id
+                  }')">-</button>
+                  <input type="text" class="cart-quantity-input" value="${
+                    item.quantity
+                  }" readonly>
+                  <button class="cart-quantity-btn" onclick="increaseCartQuantity('${
+                    item.id
+                  }')">+</button>
+                </div>
+                <button class="remove-item" onclick="removeFromCart('${
+                  item.id
+                }')">
+                  <i class="fas fa-trash"></i>
+                </button>
+              </div>
+            </div>
+          `
+            )
+            .join("");
+          checkoutBtn.disabled = false;
+        }
+
+        // Update total
+        cartTotal.textContent = `Rp ${total.toLocaleString("id-ID")}`;
+      }
+
+      // Increase cart item quantity
+      function increaseCartQuantity(itemId) {
+        const cart = JSON.parse(localStorage.getItem("cart"));
+        const item = cart.find((item) => item.id === itemId);
+
+        if (item) {
+          item.quantity += 1;
+          localStorage.setItem("cart", JSON.stringify(cart));
+          updateCartDisplay();
+        }
+      }
+
+      // Decrease cart item quantity
+      function decreaseCartQuantity(itemId) {
+        const cart = JSON.parse(localStorage.getItem("cart"));
+        const item = cart.find((item) => item.id === itemId);
+
+        if (item) {
+          if (item.quantity > 1) {
+            item.quantity -= 1;
+          } else {
+            // Remove item if quantity becomes 0
+            removeFromCart(itemId);
+            return;
+          }
+
+          localStorage.setItem("cart", JSON.stringify(cart));
+          updateCartDisplay();
+        }
+      }
+
+      // Remove item from cart
+      function removeFromCart(itemId) {
+        const cart = JSON.parse(localStorage.getItem("cart"));
+        const updatedCart = cart.filter((item) => item.id !== itemId);
+        localStorage.setItem("cart", JSON.stringify(updatedCart));
+        updateCartDisplay();
+      }
+
+      // Show cart notification
+      function showCartNotification(message) {
+        // Create notification element
+        const notification = document.createElement("div");
+        notification.style.cssText = `
+          position: fixed;
+          top: 100px;
+          right: 20px;
+          background: var(--secondary);
+          color: white;
+          padding: 15px 20px;
+          border-radius: 5px;
+          box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+          z-index: 10000;
+          animation: slideInRight 0.3s, slideOutRight 0.3s 2s forwards;
+        `;
+        notification.textContent = message;
+
+        document.body.appendChild(notification);
+
+        // Remove notification after animation
+        setTimeout(() => {
+          if (notification.parentNode) {
+            notification.parentNode.removeChild(notification);
+          }
+        }, 2500);
+      }
+
+      // Update checkout summary
+      function updateCheckoutSummary() {
+        const cart = JSON.parse(localStorage.getItem("cart"));
+        let total = 0;
+
+        checkoutSummary.innerHTML = cart
+          .map(
+            (item) => `
+          <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+            <div>
+              ${item.menuName} (${item.quantity}x)
+              ${
+                item.type === "pempek"
+                  ? `<br><small>Penyajian: ${item.servingType}</small>`
+                  : `<br><small>${item.servingType}</small>`
+              }
+            </div>
+            <div>Rp ${(item.price * item.quantity).toLocaleString(
+              "id-ID"
+            )}</div>
+          </div>
+        `
+          )
+          .join("");
+
+        cart.forEach((item) => {
+          total += item.price * item.quantity;
+        });
+
+        checkoutTotal.textContent = `Rp ${total.toLocaleString("id-ID")}`;
+      }
+
+      // Checkout function
+      function checkout() {
+        const cart = JSON.parse(localStorage.getItem("cart"));
+
+        if (cart.length === 0) {
+          alert("Keranjang belanja kosong!");
+          return;
+        }
+
+        // Auto-fill user data
+        const users = JSON.parse(localStorage.getItem("users"));
+        const currentUser = localStorage.getItem("currentUser");
+        const user = users.find((u) => u.username === currentUser);
+
+        if (user) {
+          document.getElementById("checkoutName").value = user.name;
+          document.getElementById("checkoutPhone").value = user.phone;
+        }
+
+        updateCheckoutSummary();
+        closeModal(cartModal);
+        openModal(checkoutModal);
+      }
+
+      // PERBAIKAN: Create WhatsApp message for cart checkout - FIXED VERSION
+      function createWhatsAppMessage(orderData) {
+        let message = "Halo Pempek Tojotojo, saya ingin memesan:\n\n";
+
+        message += "DETAIL PESANAN\n";
+        message += "Nama: " + orderData.customerName + "\n";
+        message += "Telepon: " + orderData.customerPhone + "\n\n";
+
+        message += "ITEMS PESANAN\n";
+        orderData.items.forEach((item, index) => {
+          message += index + 1 + ". " + item.menuName + "\n";
+          message += "   Jumlah: " + item.quantity + "\n";
+          message += "   Penyajian: " + item.servingType + "\n";
+          message +=
+            "   Harga: Rp " +
+            (item.price * item.quantity).toLocaleString("id-ID") +
+            "\n\n";
+        });
+
+        message +=
+          "TOTAL: Rp " + orderData.total.toLocaleString("id-ID") + "\n\n";
+
+        if (orderData.notes && orderData.notes.trim() !== "") {
+          message += "Catatan: " + orderData.notes + "\n\n";
+        }
+
+        message += "KODE PESANAN: " + orderData.id + "\n\n";
+        message += "Terima kasih!";
+
+        return message;
+      }
+
+      // PERBAIKAN: Process checkout - FIXED VERSION
+      function processCheckout(formData) {
+        const cart = JSON.parse(localStorage.getItem("cart"));
+        const orderId = generateOrderId();
+
+        // Create order from cart items
+        const orderData = {
+          id: orderId,
+          customerName: formData.get("checkoutName"),
+          customerPhone: formData.get("checkoutPhone"),
+          items: [...cart],
+          notes: formData.get("checkoutNotes"),
+          status: "pending",
+          orderDate: new Date().toLocaleString("id-ID"),
+          customer: localStorage.getItem("currentUser"),
+          total: cart.reduce(
+            (sum, item) => sum + item.price * item.quantity,
+            0
+          ),
+        };
+
+        // Save to orders
+        const orders = JSON.parse(localStorage.getItem("orders"));
+        orders.push(orderData);
+        localStorage.setItem("orders", JSON.stringify(orders));
+
+        // Clear cart
+        localStorage.setItem("cart", JSON.stringify([]));
+        updateCartDisplay();
+
+        // Create and send WhatsApp message - IMPROVED
+        const message = createWhatsAppMessage(orderData);
+
+        // Format nomor telepon (hapus karakter non-digit)
+        const phoneNumber = "62895611067777";
+
+        // Encode message untuk URL
+        const encodedMessage = encodeURIComponent(message);
+
+        // Buat WhatsApp URL dengan format yang lebih sederhana
+        const whatsappUrl =
+          "https://wa.me/" +
+          phoneNumber +
+          "?text=" +
+          encodeURIComponent(message);
+
+        console.log("WhatsApp URL:", whatsappUrl); // Untuk debugging
+        console.log("Message:", message); // Untuk debugging
+
+        // Buka WhatsApp di tab baru
+        window.open(whatsappUrl, "_blank");
+
+        // Show success message
+        const successMessage = document.createElement("div");
+        successMessage.className = "success-message";
+        successMessage.innerHTML = `
+              <strong>✅ Pesanan Berhasil!</strong><br>
+              Kode Pesanan: <strong>${orderData.id}</strong><br>
+              WhatsApp sedang dibuka untuk mengirim pesanan...
+          `;
+
+        checkoutForm.parentNode.insertBefore(successMessage, checkoutForm);
+        checkoutForm.reset();
+
+        // Remove success message after 5 seconds and close modal
+        setTimeout(() => {
+          if (successMessage.parentNode) {
+            successMessage.parentNode.removeChild(successMessage);
+          }
+          closeModal(checkoutModal);
+        }, 5000);
+      }
+
+      // Login System
+      const authModal = document.getElementById("authModal");
+      const orderModal = document.getElementById("orderModal");
+      const orderHistoryModal = document.getElementById("orderHistoryModal");
+      const loginBtn = document.getElementById("loginBtn");
+      const logoutBtn = document.getElementById("logoutBtn");
+      const orderHistoryBtn = document.getElementById("orderHistoryBtn");
+      const userMenu = document.getElementById("userMenu");
+      const loginMenu = document.getElementById("loginMenu");
+      const closeButtons = document.querySelectorAll(".close");
+      const orderButtons = document.querySelectorAll(".order-btn");
+      const loginFormElement = document.getElementById("loginFormElement");
+      const registerFormElement = document.getElementById(
+        "registerFormElement"
+      );
+      const orderForm = document.getElementById("orderForm");
+      const heroOrderBtn = document.getElementById("heroOrderBtn");
+      const whatsappBtn = document.getElementById("whatsappBtn");
+      const formTabs = document.querySelectorAll(".form-tab");
+
+      // Check if user is logged in
+      function checkLoginStatus() {
+        const isLoggedIn = localStorage.getItem("isLoggedIn");
+        const currentUser = localStorage.getItem("currentUser");
+
+        if (isLoggedIn && currentUser) {
+          userMenu.style.display = "flex";
+          loginMenu.style.display = "none";
+          updateOrderButtons(true);
+          updateCartDisplay();
+
+          // Auto-fill user data in order form
+          const users = JSON.parse(localStorage.getItem("users"));
+          const user = users.find((u) => u.username === currentUser);
+          if (user) {
+            document.getElementById("customerName").value = user.name;
+            document.getElementById("customerPhone").value = user.phone;
+          }
+        } else {
+          userMenu.style.display = "none";
+          loginMenu.style.display = "flex";
+          updateOrderButtons(false);
+          // Reset cart count for logged out users
+          cartCount.textContent = "0";
+        }
+      }
+
+      // Update order buttons based on login status
+      function updateOrderButtons(isLoggedIn) {
+        const orderButtons = document.querySelectorAll(".order-btn");
+        const addToCartButtons = document.querySelectorAll(".add-to-cart-btn");
+        const loginRequiredOverlays =
+          document.querySelectorAll(".login-required");
+
+        if (isLoggedIn) {
+          orderButtons.forEach((btn) => {
+            btn.disabled = false;
+            btn.innerHTML = "Pesan Langsung";
+          });
+          addToCartButtons.forEach((btn) => {
+            btn.disabled = false;
+            btn.innerHTML = '<i class="fas fa-cart-plus"></i> Keranjang';
+          });
+          loginRequiredOverlays.forEach((overlay) => {
+            overlay.style.display = "none";
+          });
+        } else {
+          orderButtons.forEach((btn) => {
+            btn.disabled = true;
+            btn.innerHTML = "Login untuk Memesan";
+          });
+          addToCartButtons.forEach((btn) => {
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fas fa-cart-plus"></i> Keranjang';
+          });
+          loginRequiredOverlays.forEach((overlay) => {
+            overlay.style.display = "flex";
+          });
+        }
+      }
+
+      // Modal functions
+      function openModal(modal) {
+        modal.style.display = "block";
+        document.body.style.overflow = "hidden";
+      }
+
+      function openAuthModal(tab = "login") {
+        openModal(authModal);
+        switchTab(tab);
+      }
+
+      function closeModal(modal) {
+        modal.style.display = "none";
+        document.body.style.overflow = "auto";
+      }
+
+      // Switch between login and register tabs
+      function switchTab(tabName) {
+        // Update tabs
+        formTabs.forEach((tab) => {
+          if (tab.dataset.tab === tabName) {
+            tab.classList.add("active");
+          } else {
+            tab.classList.remove("active");
+          }
+        });
+
+        // Update forms
+        document.querySelectorAll(".form-content").forEach((form) => {
+          if (form.id === tabName + "Form") {
+            form.classList.add("active");
+          } else {
+            form.classList.remove("active");
+          }
+        });
+      }
+
+      // Event Listeners
+      loginBtn.addEventListener("click", () => openAuthModal("login"));
+      orderHistoryBtn.addEventListener("click", () => {
+        displayOrderHistory();
+        openModal(orderHistoryModal);
+      });
+      logoutBtn.addEventListener("click", logout);
+
+      heroOrderBtn.addEventListener("click", () => {
+        if (!localStorage.getItem("isLoggedIn")) {
+          alert("Silakan login terlebih dahulu untuk memesan!");
+          openAuthModal("login");
+          return;
+        }
+        openModal(orderModal);
+      });
+
+      whatsappBtn.addEventListener("click", () => {
+        if (!localStorage.getItem("isLoggedIn")) {
+          alert("Silakan login terlebih dahulu untuk memesan via WhatsApp!");
+          openAuthModal("login");
+          return;
+        }
+        window.open(
+          "https://wa.me/62895611067777?text=Halo,%20saya%20ingin%20memesan%20pempek",
+          "_blank"
+        );
+      });
+
+      closeButtons.forEach((button) => {
+        button.addEventListener("click", function () {
+          const modal = this.closest(".modal");
+          closeModal(modal);
+        });
+      });
+
+      orderButtons.forEach((button) => {
+        button.addEventListener("click", function () {
+          if (!localStorage.getItem("isLoggedIn")) {
+            alert("Silakan login terlebih dahulu untuk memesan!");
+            openAuthModal("login");
+            return;
+          }
+          const menuItem = this.getAttribute("data-menu");
+          const menuType = this.getAttribute("data-type");
+
+          document.getElementById("menuItem").value = menuItem;
+
+          // Set serving type yang sesuai
+          if (menuType === "pempek") {
+            document.getElementById("servingTypeGroup").style.display = "block";
+            document.getElementById("frozen").checked = true;
+          } else {
+            // Untuk minuman, sembunyikan opsi penyajian pempek
+            document.getElementById("servingTypeGroup").style.display = "none";
+          }
+
+          openModal(orderModal);
+        });
+      });
+
+      // Event Listeners for Cart System
+      cartIcon.addEventListener("click", () => {
+        if (!localStorage.getItem("isLoggedIn")) {
+          alert("Silakan login terlebih dahulu untuk melihat keranjang!");
+          openAuthModal("login");
+          return;
+        }
+        openModal(cartModal);
+      });
+
+      continueShoppingBtn.addEventListener("click", () => {
+        closeModal(cartModal);
+      });
+
+      checkoutBtn.addEventListener("click", checkout);
+
+      addToCartButtons.forEach((button) => {
+        button.addEventListener("click", function () {
+          const menuName = this.getAttribute("data-menu");
+          const price = this.getAttribute("data-price");
+          const type = this.getAttribute("data-type");
+          addToCart(menuName, price, type);
+        });
+      });
+
+      checkoutForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        if (!validateCheckoutForm()) {
+          return;
+        }
+
+        const formData = new FormData(checkoutForm);
+        processCheckout(formData);
+      });
+
+      // Form tabs event listeners
+      formTabs.forEach((tab) => {
+        tab.addEventListener("click", function () {
+          switchTab(this.dataset.tab);
+        });
+      });
+
+      // Close modal when clicking outside
+      window.addEventListener("click", (e) => {
+        if (e.target.classList.contains("modal")) {
+          closeModal(e.target);
+        }
+      });
+
+      // Login Form Handler
+      loginFormElement.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const username = document.getElementById("username").value;
+        const password = document.getElementById("password").value;
+
+        const users = JSON.parse(localStorage.getItem("users"));
+        const user = users.find(
+          (u) => u.username === username && u.password === password
+        );
+
+        if (user) {
+          localStorage.setItem("isLoggedIn", "true");
+          localStorage.setItem("currentUser", username);
+          closeModal(authModal);
+          checkLoginStatus();
+          alert("Login berhasil! Selamat datang " + username);
+          loginFormElement.reset();
+        } else {
+          alert("Username atau password salah!");
+        }
+      });
+
+      // Register Form Handler
+      registerFormElement.addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        const name = document.getElementById("regName").value.trim();
+        const phone = document.getElementById("regPhone").value.trim();
+        const username = document.getElementById("regUsername").value.trim();
+        const password = document.getElementById("regPassword").value;
+        const confirmPassword =
+          document.getElementById("regConfirmPassword").value;
+
+        // Clear previous errors
+        clearRegisterErrors();
+
+        // Validation
+        let isValid = true;
+
+        if (name.length < 3) {
+          showRegisterError("usernameError", "Nama harus minimal 3 karakter");
+          isValid = false;
+        }
+
+        if (!/^[0-9+\-\s()]{10,}$/.test(phone)) {
+          showRegisterError(
+            "usernameError",
+            "Format nomor telepon tidak valid"
+          );
+          isValid = false;
+        }
+
+        if (username.length < 3) {
+          showRegisterError(
+            "usernameError",
+            "Username harus minimal 3 karakter"
+          );
+          isValid = false;
+        }
+
+        // Check if username already exists
+        const users = JSON.parse(localStorage.getItem("users"));
+        if (users.find((u) => u.username === username)) {
+          showRegisterError("usernameError", "Username sudah digunakan");
+          isValid = false;
+        }
+
+        if (password.length < 6) {
+          showRegisterError(
+            "passwordError",
+            "Password harus minimal 6 karakter"
+          );
+          isValid = false;
+        }
+
+        if (password !== confirmPassword) {
+          showRegisterError(
+            "confirmPasswordError",
+            "Konfirmasi password tidak cocok"
+          );
+          isValid = false;
+        }
+
+        if (!isValid) return;
+
+        // Create new user
+        const newUser = {
+          username: username,
+          password: password,
+          name: name,
+          phone: phone,
+          registeredAt: new Date().toISOString(),
+        };
+
+        users.push(newUser);
+        localStorage.setItem("users", JSON.stringify(users));
+
+        // Auto login after registration
+        localStorage.setItem("isLoggedIn", "true");
+        localStorage.setItem("currentUser", username);
+        closeModal(authModal);
+        checkLoginStatus();
+
+        alert("Pendaftaran berhasil! Selamat datang " + username);
+        registerFormElement.reset();
+      });
+
+      function clearRegisterErrors() {
+        document.getElementById("usernameError").style.display = "none";
+        document.getElementById("passwordError").style.display = "none";
+        document.getElementById("confirmPasswordError").style.display = "none";
+      }
+
+      function showRegisterError(elementId, message) {
+        const errorElement = document.getElementById(elementId);
+        errorElement.textContent = message;
+        errorElement.style.display = "block";
+      }
+
+      // Quantity control functions
+      function increaseQuantity() {
+        const quantityInput = document.getElementById("quantity");
+        quantityInput.value = parseInt(quantityInput.value) + 1;
+      }
+
+      function decreaseQuantity() {
+        const quantityInput = document.getElementById("quantity");
+        if (parseInt(quantityInput.value) > 1) {
+          quantityInput.value = parseInt(quantityInput.value) - 1;
+        }
+      }
+
+      // Form validation for order
+      function validateOrderForm() {
+        let isValid = true;
+        const customerName = document
+          .getElementById("customerName")
+          .value.trim();
+        const customerPhone = document
+          .getElementById("customerPhone")
+          .value.trim();
+        const menuItem = document.getElementById("menuItem").value;
+        const quantity = document.getElementById("quantity").value;
+
+        // Clear previous errors
+        document.querySelectorAll(".error-message").forEach((error) => {
+          error.style.display = "none";
+        });
+        document.querySelectorAll(".form-group").forEach((group) => {
+          group.classList.remove("error");
+        });
+
+        // Validate customer name
+        if (!customerName) {
+          showError("customerNameError", "Nama pemesan harus diisi");
+          isValid = false;
+        }
+
+        // Validate phone number
+        if (!customerPhone) {
+          showError("customerPhoneError", "Nomor WhatsApp harus diisi");
+          isValid = false;
+        } else if (!/^[0-9+\-\s()]{10,}$/.test(customerPhone)) {
+          showError("customerPhoneError", "Format nomor telepon tidak valid");
+          isValid = false;
+        }
+
+        // Validate menu item
+        if (!menuItem) {
+          showError("menuItemError", "Silakan pilih menu");
+          isValid = false;
+        }
+
+        // Validate quantity
+        if (!quantity || quantity < 1) {
+          showError("quantityError", "Jumlah harus minimal 1");
+          isValid = false;
+        }
+
+        return isValid;
+      }
+
+      // Validate checkout form
+      function validateCheckoutForm() {
+        let isValid = true;
+        const checkoutName = document
+          .getElementById("checkoutName")
+          .value.trim();
+        const checkoutPhone = document
+          .getElementById("checkoutPhone")
+          .value.trim();
+
+        // Clear previous errors
+        document.querySelectorAll(".error-message").forEach((error) => {
+          error.style.display = "none";
+        });
+
+        // Validate name
+        if (!checkoutName) {
+          showError("checkoutNameError", "Nama pemesan harus diisi");
+          isValid = false;
+        }
+
+        // Validate phone
+        if (!checkoutPhone) {
+          showError("checkoutPhoneError", "Nomor WhatsApp harus diisi");
+          isValid = false;
+        } else if (!/^[0-9+\-\s()]{10,}$/.test(checkoutPhone)) {
+          showError("checkoutPhoneError", "Format nomor telepon tidak valid");
+          isValid = false;
+        }
+
+        return isValid;
+      }
+
+      function showError(elementId, message) {
+        const errorElement = document.getElementById(elementId);
+        errorElement.textContent = message;
+        errorElement.style.display = "block";
+        errorElement.parentElement.classList.add("error");
+      }
+
+      // PERBAIKAN: Order Form Handler - FIXED WhatsApp message
+      orderForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        if (!localStorage.getItem("isLoggedIn")) {
+          alert("Silakan login terlebih dahulu!");
+          openAuthModal("login");
+          return;
+        }
+
+        // Validate form
+        if (!validateOrderForm()) {
+          return;
+        }
+
+        const formData = new FormData(orderForm);
+        const menuItem = formData.get("menuItem");
+
+        // Tentukan serving type
+        let servingType = "";
+        if (menuItem.includes("Pempek") || menuItem.includes("Paket")) {
+          servingType = document.querySelector(
+            'input[name="servingType"]:checked'
+          ).value;
+        } else {
+          // Untuk minuman, default ke Dine In
+          servingType = "Dine In";
+        }
+
+        const orderData = {
+          id: generateOrderId(),
+          customerName: formData.get("customerName"),
+          customerPhone: formData.get("customerPhone"),
+          menuItem: menuItem,
+          quantity: formData.get("quantity"),
+          servingType: servingType,
+          notes: formData.get("notes"),
+          status: "pending",
+          orderDate: new Date().toLocaleString("id-ID"),
+          customer: localStorage.getItem("currentUser"),
+        };
+
+        const orders = JSON.parse(localStorage.getItem("orders"));
+        orders.push(orderData);
+        localStorage.setItem("orders", JSON.stringify(orders));
+
+        // PERBAIKAN: Send WhatsApp message - FIXED VERSION
+        const message =
+          "Halo Pempek Tojotojo, saya ingin memesan:\n\n" +
+          "DETAIL PESANAN\n" +
+          "Nama: " +
+          orderData.customerName +
+          "\n" +
+          "Telepon: " +
+          orderData.customerPhone +
+          "\n" +
+          "Menu: " +
+          orderData.menuItem +
+          "\n" +
+          "Jumlah: " +
+          orderData.quantity +
+          "\n" +
+          (orderData.servingType
+            ? "Penyajian: " + orderData.servingType + "\n"
+            : "") +
+          "Catatan: " +
+          (orderData.notes || "-") +
+          "\n\n" +
+          "KODE PESANAN: " +
+          orderData.id +
+          "\n\n" +
+          "Terima kasih!";
+
+        const phoneNumber = "62895611067777";
+        const whatsappUrl =
+          "https://wa.me/" +
+          phoneNumber +
+          "?text=" +
+          encodeURIComponent(message);
+
+        console.log("WhatsApp URL:", whatsappUrl); // Untuk debugging
+        console.log("Message:", message); // Untuk debugging
+
+        window.open(whatsappUrl, "_blank");
+
+        // Show success message
+        const successMessage = document.createElement("div");
+        successMessage.className = "success-message";
+        successMessage.innerHTML = `
+          <strong>✅ Pesanan Berhasil!</strong><br>
+          Kode Pesanan: <strong>${orderData.id}</strong><br>
+          WhatsApp sedang dibuka untuk mengirim pesanan...
+        `;
+
+        orderForm.parentNode.insertBefore(successMessage, orderForm);
+        orderForm.reset();
+
+        // Reset to default values
+        document.getElementById("quantity").value = 1;
+        document.getElementById("frozen").checked = true;
+        document.getElementById("servingTypeGroup").style.display = "block";
+
+        // Auto-fill user data again
+        checkLoginStatus();
+
+        // Remove success message after 5 seconds and close modal
+        setTimeout(() => {
+          if (successMessage.parentNode) {
+            successMessage.parentNode.removeChild(successMessage);
+          }
+          closeModal(orderModal);
+        }, 5000);
+      });
+
+      // Display Order History
+      function displayOrderHistory() {
+        const orderHistory = document.getElementById("orderHistory");
+        const orders = JSON.parse(localStorage.getItem("orders"));
+        const currentUser = localStorage.getItem("currentUser");
+
+        // Jika admin, tampilkan semua pesanan. Jika customer, hanya pesanan mereka
+        const userOrders =
+          currentUser === "admin"
+            ? orders
+            : orders.filter((order) => order.customer === currentUser);
+
+        if (userOrders.length === 0) {
+          orderHistory.innerHTML = "<p>Belum ada pesanan.</p>";
+          return;
+        }
+
+        orderHistory.innerHTML = userOrders
+          .map(
+            (order) => `
+                <div class="order-item">
+                    <div>
+                        <strong class="order-code">${order.id}</strong> 
+                        <span class="order-status status-${order.status}">${
+              order.status
+            }</span>
+                    </div>
+                    <div><strong>${order.menuItem}</strong> (${
+              order.quantity
+            }x) - ${order.servingType}</div>
+                    <div>Nama: ${order.customerName} | Telp: ${
+              order.customerPhone
+            }</div>
+                    <div>Tanggal: ${order.orderDate}</div>
+                    ${order.notes ? `<div>Catatan: ${order.notes}</div>` : ""}
+                </div>
+            `
+          )
+          .join("");
+      }
+
+      // Logout Function
+      function logout() {
+        localStorage.removeItem("isLoggedIn");
+        localStorage.removeItem("currentUser");
+        checkLoginStatus();
+        alert("Logout berhasil!");
+      }
+
+      // Generate Order ID
+      function generateOrderId() {
+        return (
+          "ORDER-" +
+          Date.now() +
+          "-" +
+          Math.random().toString(36).substr(2, 5).toUpperCase()
+        );
+      }
+
+      // Mobile Menu Toggle
+      const mobileMenu = document.querySelector(".mobile-menu");
+      const nav = document.querySelector("nav");
+
+      mobileMenu.addEventListener("click", () => {
+        nav.classList.toggle("active");
+      });
+
+      // Close mobile menu when clicking on a link
+      const navLinks = document.querySelectorAll("nav ul li a");
+      navLinks.forEach((link) => {
+        link.addEventListener("click", () => {
+          nav.classList.remove("active");
+        });
+      });
+
+      // Scroll animations
+      const fadeElements = document.querySelectorAll(".fade-in");
+
+      const fadeInOnScroll = () => {
+        fadeElements.forEach((element) => {
+          const elementTop = element.getBoundingClientRect().top;
+          const elementVisible = 150;
+
+          if (elementTop < window.innerHeight - elementVisible) {
+            element.classList.add("visible");
+          }
+        });
+      };
+
+      window.addEventListener("scroll", fadeInOnScroll);
+      window.addEventListener("load", fadeInOnScroll);
+
+      // Smooth scrolling for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+
+          const targetId = this.getAttribute("href");
+          if (targetId === "#") return;
+
+          const targetElement = document.querySelector(targetId);
+          if (targetElement) {
+            window.scrollTo({
+              top: targetElement.offsetTop - 80,
+              behavior: "smooth",
+            });
+          }
+        });
+      });
+
+      // Add CSS animation for notification
+      const style = document.createElement("style");
+      style.textContent = `
+        @keyframes slideInRight {
+          from { transform: translateX(100%); opacity: 0; }
+          to { transform: translateX(0); opacity: 1; }
+        }
+        
+        @keyframes slideOutRight {
+          from { transform: translateX(0); opacity: 1; }
+          to { transform: translateX(100%); opacity: 0; }
+        }
+      `;
+      document.head.appendChild(style);
+
+      // Initialize
+      initializeData();
+      checkLoginStatus();
+      initializeCart();
+    </script>
+  </body>
+</html>
