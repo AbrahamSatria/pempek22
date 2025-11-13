@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Pempek Tojotojo - The best Authentic from Lubuklinggau</title>
+    <title>Pempek Tojo Tojo - The best Authentic from Lubuklinggau</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -259,54 +259,135 @@
         background: #600000;
       }
 
-      /* Serving Options Modal */
+      /* PERBAIKAN: Serving Options Modal dengan dua kategori yang hanya bisa dipilih satu */
       .serving-options-modal {
         display: flex;
         flex-direction: column;
         gap: 15px;
         margin: 20px 0;
-        max-height: 300px; /* PERBAIKAN: Tambahkan max-height */
-        overflow-y: auto; /* PERBAIKAN: Tambahkan scroll */
+        max-height: 300px;
+        overflow-y: auto;
         padding-right: 10px;
       }
 
-      .serving-option-modal {
-        border: 2px solid #e0e0e0;
+      .serving-category {
+        margin-bottom: 20px;
+        border: 1px solid #e0e0e0;
         border-radius: 8px;
+        overflow: hidden;
+      }
+
+      .serving-category-title {
+        background: var(--primary);
+        color: white;
+        padding: 12px 15px;
+        font-weight: 600;
+        font-size: 1rem;
+      }
+
+      .serving-options-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0;
+      }
+
+      .serving-option-modal {
+        border: none;
+        border-radius: 0;
         padding: 15px;
         cursor: pointer;
         transition: all 0.3s;
+        text-align: center;
+        border-right: 1px solid #e0e0e0;
+        border-bottom: 1px solid #e0e0e0;
+        position: relative;
+      }
+
+      .serving-option-modal:nth-child(even) {
+        border-right: none;
       }
 
       .serving-option-modal:hover {
-        border-color: var(--primary);
+        background-color: rgba(128, 0, 0, 0.05);
       }
 
       .serving-option-modal.selected {
-        border-color: var(--primary);
         background-color: rgba(128, 0, 0, 0.1);
+        border: 2px solid var(--primary);
       }
 
       .serving-option-header {
         display: flex;
+        flex-direction: column;
         align-items: center;
-        gap: 10px;
+        gap: 8px;
         margin-bottom: 5px;
       }
 
       .serving-option-icon {
-        font-size: 1.5rem;
+        font-size: 1.8rem;
       }
 
       .serving-option-title {
         font-weight: 600;
         color: var(--primary);
+        font-size: 0.95rem;
       }
 
       .serving-option-description {
-        font-size: 0.9rem;
+        font-size: 0.8rem;
         color: #666;
-        margin-left: 35px;
+        text-align: center;
+      }
+
+      /* PERBAIKAN: Radio button tersembunyi untuk kontrol seleksi */
+      .serving-option-radio {
+        position: absolute;
+        opacity: 0;
+        width: 0;
+        height: 0;
+      }
+
+      /* PERBAIKAN: Category selection info */
+      .category-selection-info {
+        font-size: 0.85rem;
+        color: #666;
+        text-align: center;
+        margin-top: 10px;
+        font-style: italic;
+      }
+
+      /* PERBAIKAN: Catatan tambahan untuk serving modal */
+      .serving-notes-container {
+        margin: 20px 0;
+      }
+
+      .serving-notes-container label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 500;
+        color: var(--dark);
+        font-size: 0.95rem;
+      }
+
+      .serving-notes-container textarea {
+        width: 100%;
+        padding: 12px 15px;
+        border: 2px solid #e0e0e0;
+        border-radius: 8px;
+        font-family: "Poppins", sans-serif;
+        font-size: 1rem;
+        transition: all 0.3s;
+        background-color: var(--light);
+        resize: vertical;
+        min-height: 80px;
+      }
+
+      .serving-notes-container textarea:focus {
+        outline: none;
+        border-color: var(--primary);
+        box-shadow: 0 0 0 3px rgba(128, 0, 0, 0.1);
+        background-color: #fff;
       }
 
       /* PERBAIKAN: Cart Items Styles dengan scroll yang lebih baik */
@@ -358,6 +439,13 @@
       .cart-item-details {
         font-size: 0.9rem;
         color: #666;
+      }
+
+      .cart-item-notes {
+        font-size: 0.8rem;
+        color: #888;
+        font-style: italic;
+        margin-top: 3px;
       }
 
       .cart-item-price {
@@ -518,10 +606,12 @@
         display: flex;
         gap: 15px;
         margin-top: 5px;
+        flex-wrap: wrap;
       }
 
       .serving-option {
         flex: 1;
+        min-width: 120px;
       }
 
       .serving-option input[type="radio"] {
@@ -1310,6 +1400,14 @@
           gap: 10px;
         }
 
+        .serving-options-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .serving-option-modal:nth-child(even) {
+          border-right: 1px solid #e0e0e0;
+        }
+
         .menu-card .menu-actions {
           flex-direction: column;
         }
@@ -1471,11 +1569,14 @@
       </button>
     </div>
 
-    <!-- Serving Options Modal - DIPERBAIKI -->
+    <!-- Serving Options Modal - DIPERBAIKI dengan DUA KATEGORI yang hanya bisa dipilih satu -->
     <div id="servingModal" class="modal">
       <div class="modal-content serving-modal-content">
         <span class="close">&times;</span>
         <h2>Pilih Penyajian</h2>
+        <p class="category-selection-info">
+          Pilih satu opsi dari setiap kategori penyajian
+        </p>
 
         <div class="serving-options-modal" id="servingOptionsContainer">
           <!-- Opsi penyajian akan ditampilkan di sini -->
@@ -1506,6 +1607,16 @@
           >
             +
           </button>
+        </div>
+
+        <!-- PERBAIKAN: Tambahan field catatan -->
+        <div class="serving-notes-container">
+          <label for="servingNotes">Catatan Tambahan:</label>
+          <textarea
+            id="servingNotes"
+            placeholder="Contoh: Level pedas, tambah cuko, tanpa bawang, dll."
+            rows="3"
+          ></textarea>
         </div>
 
         <button class="btn" id="confirmServingBtn">
@@ -1571,7 +1682,9 @@
             </div>
 
             <div class="form-group">
-              <label for="checkoutNotes">Catatan Tambahan:</label>
+              <label for="checkoutNotes"
+                >Catatan Tambahan untuk Seluruh Pesanan:</label
+              >
               <textarea
                 id="checkoutNotes"
                 name="checkoutNotes"
@@ -1707,7 +1820,7 @@
       </div>
     </div>
 
-    <!-- Order Modal - DIPERBAIKI -->
+    <!-- Order Modal - DIPERBAIKI dengan DUA KATEGORI -->
     <div id="orderModal" class="modal">
       <div class="modal-content">
         <span class="close">&times;</span>
@@ -1818,17 +1931,26 @@
 
             <!-- Penyajian - Hanya untuk Pempek -->
             <div class="form-group" id="servingTypeGroup">
-              <label>Penyajian:</label>
+              <label>Pilih Penyajian:</label>
               <div class="serving-options">
                 <div class="serving-option">
                   <input
                     type="radio"
-                    id="frozen"
+                    id="dineIn"
                     name="servingType"
-                    value="Frozen"
+                    value="Dine In"
                     checked
                   />
-                  <label for="frozen">❄️ Frozen</label>
+                  <label for="dineIn">🍽️ Dine In</label>
+                </div>
+                <div class="serving-option">
+                  <input
+                    type="radio"
+                    id="takeAway"
+                    name="servingType"
+                    value="Take Away"
+                  />
+                  <label for="takeAway">🥡 Take Away</label>
                 </div>
                 <div class="serving-option">
                   <input
@@ -1837,7 +1959,16 @@
                     name="servingType"
                     value="Siap Santap"
                   />
-                  <label for="siapSantap">🍽️ Siap Santap</label>
+                  <label for="siapSantap">🔥 Siap Santap</label>
+                </div>
+                <div class="serving-option">
+                  <input
+                    type="radio"
+                    id="frozen"
+                    name="servingType"
+                    value="Frozen"
+                  />
+                  <label for="frozen">❄️ Frozen</label>
                 </div>
               </div>
             </div>
@@ -3220,6 +3351,7 @@
         "servingOptionsContainer"
       );
       const servingQuantity = document.getElementById("servingQuantity");
+      const servingNotes = document.getElementById("servingNotes");
       const confirmServingBtn = document.getElementById("confirmServingBtn");
 
       // Cart System
@@ -3243,7 +3375,7 @@
         updateCartDisplay();
       }
 
-      // Fungsi untuk menampilkan modal pilihan penyajian
+      // PERBAIKAN: Fungsi untuk menampilkan modal pilihan penyajian dengan DUA KATEGORI yang hanya bisa dipilih satu
       function showServingOptions(menuName, price, type) {
         currentMenuItem = menuName;
         currentMenuPrice = price;
@@ -3253,84 +3385,130 @@
         servingOptionsContainer.innerHTML = "";
 
         if (type === "pempek") {
-          // Opsi untuk pempek
+          // Opsi untuk pempek - DUA KATEGORI dengan radio button
           servingOptionsContainer.innerHTML = `
-            <div class="serving-option-modal" onclick="selectServingOption(this)" data-serving="Frozen">
-              <div class="serving-option-header">
-                <div class="serving-option-icon">❄️</div>
-                <div class="serving-option-title">Frozen</div>
-              </div>
-              <div class="serving-option-description">
-                Pempek mentah beku, siap dimasak di rumah. Cocok untuk dibawa pulang atau dikirim.
+            <div class="serving-category">
+              <div class="serving-category-title">🏪 Penyajian di Tempat</div>
+              <div class="serving-options-grid">
+                <label class="serving-option-modal" for="dineInModal">
+                  <input type="radio" id="dineInModal" name="servingTypePlace" class="serving-option-radio" value="Dine In">
+                  <div class="serving-option-header">
+                    <div class="serving-option-icon">🍽️</div>
+                    <div class="serving-option-title">Dine In</div>
+                  </div>
+                  <div class="serving-option-description">
+                    Menikmati pempek langsung di tempat
+                  </div>
+                </label>
+                <label class="serving-option-modal" for="takeAwayModal">
+                  <input type="radio" id="takeAwayModal" name="servingTypePlace" class="serving-option-radio" value="Take Away">
+                  <div class="serving-option-header">
+                    <div class="serving-option-icon">🥡</div>
+                    <div class="serving-option-title">Take Away</div>
+                  </div>
+                  <div class="serving-option-description">
+                    Dibawa pulang untuk dinikmati di rumah
+                  </div>
+                </label>
               </div>
             </div>
-            <div class="serving-option-modal" onclick="selectServingOption(this)" data-serving="Siap Santap">
-              <div class="serving-option-header">
-                <div class="serving-option-icon">🍽️</div>
-                <div class="serving-option-title">Siap Santap</div>
-              </div>
-              <div class="serving-option-description">
-                Pempek sudah matang dengan kuah cuko, siap langsung disantap.
+            
+            <div class="serving-category">
+              <div class="serving-category-title">📦 Penyajian Khusus</div>
+              <div class="serving-options-grid">
+                <label class="serving-option-modal" for="siapSantapModal">
+                  <input type="radio" id="siapSantapModal" name="servingTypeSpecial" class="serving-option-radio" value="Siap Santap">
+                  <div class="serving-option-header">
+                    <div class="serving-option-icon">🔥</div>
+                    <div class="serving-option-title">Siap Santap</div>
+                  </div>
+                  <div class="serving-option-description">
+                    Pempek matang siap langsung disantap
+                  </div>
+                </label>
+                <label class="serving-option-modal" for="frozenModal">
+                  <input type="radio" id="frozenModal" name="servingTypeSpecial" class="serving-option-radio" value="Frozen">
+                  <div class="serving-option-header">
+                    <div class="serving-option-icon">❄️</div>
+                    <div class="serving-option-title">Frozen</div>
+                  </div>
+                  <div class="serving-option-description">
+                    Pempek mentah beku untuk dimasak sendiri
+                  </div>
+                </label>
               </div>
             </div>
           `;
         } else if (type === "minuman") {
           // Opsi untuk minuman
           servingOptionsContainer.innerHTML = `
-            <div class="serving-option-modal" onclick="selectServingOption(this)" data-serving="Dine In">
-              <div class="serving-option-header">
-                <div class="serving-option-icon">🏪</div>
-                <div class="serving-option-title">Dine In</div>
-              </div>
-              <div class="serving-option-description">
-                Menikmati minuman langsung di tempat. Dilayani dalam gelas.
-              </div>
-            </div>
-            <div class="serving-option-modal" onclick="selectServingOption(this)" data-serving="Takeaway">
-              <div class="serving-option-header">
-                <div class="serving-option-icon">🥤</div>
-                <div class="serving-option-title">Takeaway</div>
-              </div>
-              <div class="serving-option-description">
-                Minuman dikemas untuk dibawa pulang. Dalam kemasan cup dengan tutup.
+            <div class="serving-category">
+              <div class="serving-category-title">🥤 Penyajian Minuman</div>
+              <div class="serving-options-grid">
+                <label class="serving-option-modal" for="dineInDrinkModal">
+                  <input type="radio" id="dineInDrinkModal" name="servingTypeDrink" class="serving-option-radio" value="Dine In">
+                  <div class="serving-option-header">
+                    <div class="serving-option-icon">🏪</div>
+                    <div class="serving-option-title">Dine In</div>
+                  </div>
+                  <div class="serving-option-description">
+                    Dilayani dalam gelas di tempat
+                  </div>
+                </label>
+                <label class="serving-option-modal" for="takeAwayDrinkModal">
+                  <input type="radio" id="takeAwayDrinkModal" name="servingTypeDrink" class="serving-option-radio" value="Take Away">
+                  <div class="serving-option-header">
+                    <div class="serving-option-icon">🥤</div>
+                    <div class="serving-option-title">Take Away</div>
+                  </div>
+                  <div class="serving-option-description">
+                    Dikemas dalam cup untuk dibawa
+                  </div>
+                </label>
               </div>
             </div>
           `;
         }
 
-        // Reset quantity
+        // Reset quantity dan catatan
         servingQuantity.value = 1;
+        servingNotes.value = "";
 
         // Pilih opsi pertama secara default
         const firstOption = servingOptionsContainer.querySelector(
-          ".serving-option-modal"
+          ".serving-option-radio"
         );
         if (firstOption) {
-          selectServingOption(firstOption);
+          firstOption.checked = true;
+          firstOption.parentElement.classList.add("selected");
         }
+
+        // Event listener untuk radio buttons
+        document.querySelectorAll(".serving-option-radio").forEach((radio) => {
+          radio.addEventListener("change", function () {
+            // Hapus selected class dari semua opsi dalam kategori yang sama
+            const categoryName = this.name;
+            document
+              .querySelectorAll(`input[name="${categoryName}"]`)
+              .forEach((r) => {
+                r.parentElement.classList.remove("selected");
+              });
+
+            // Tambah selected class ke opsi yang dipilih
+            this.parentElement.classList.add("selected");
+          });
+        });
 
         openModal(servingModal);
       }
 
-      // Fungsi untuk memilih opsi penyajian
-      function selectServingOption(element) {
-        // Hapus selected class dari semua opsi
-        document.querySelectorAll(".serving-option-modal").forEach((opt) => {
-          opt.classList.remove("selected");
-        });
-
-        // Tambah selected class ke opsi yang dipilih
-        element.classList.add("selected");
-      }
-
       // Fungsi untuk mendapatkan opsi penyajian yang dipilih
       function getSelectedServing() {
-        const selectedOption = servingOptionsContainer.querySelector(
-          ".serving-option-modal.selected"
+        // Cari radio button yang terpilih
+        const selectedRadio = servingOptionsContainer.querySelector(
+          ".serving-option-radio:checked"
         );
-        return selectedOption
-          ? selectedOption.getAttribute("data-serving")
-          : null;
+        return selectedRadio ? selectedRadio.value : null;
       }
 
       // Fungsi quantity untuk modal penyajian
@@ -3348,6 +3526,7 @@
       confirmServingBtn.addEventListener("click", function () {
         const selectedServing = getSelectedServing();
         const quantity = parseInt(servingQuantity.value);
+        const notes = servingNotes.value.trim();
 
         if (!selectedServing) {
           alert("Silakan pilih opsi penyajian!");
@@ -3360,13 +3539,21 @@
           currentMenuPrice,
           currentMenuType,
           selectedServing,
-          quantity
+          quantity,
+          notes
         );
         closeModal(servingModal);
       });
 
-      // Fungsi untuk menambahkan item ke keranjang dengan penyajian
-      function addToCartWithServing(menuName, price, type, serving, quantity) {
+      // PERBAIKAN: Fungsi untuk menambahkan item ke keranjang dengan penyajian dan catatan
+      function addToCartWithServing(
+        menuName,
+        price,
+        type,
+        serving,
+        quantity,
+        notes = ""
+      ) {
         if (!localStorage.getItem("isLoggedIn")) {
           alert(
             "Silakan login terlebih dahulu untuk menambahkan ke keranjang!"
@@ -3377,7 +3564,10 @@
 
         const cart = JSON.parse(localStorage.getItem("cart"));
         const existingItem = cart.find(
-          (item) => item.menuName === menuName && item.servingType === serving
+          (item) =>
+            item.menuName === menuName &&
+            item.servingType === serving &&
+            item.notes === notes
         );
 
         if (existingItem) {
@@ -3390,6 +3580,7 @@
             quantity: quantity,
             type: type,
             servingType: serving,
+            notes: notes,
           });
         }
 
@@ -3407,7 +3598,7 @@
         showServingOptions(menuName, price, type);
       }
 
-      // Update cart display
+      // PERBAIKAN: Update cart display untuk semua opsi penyajian dan catatan
       function updateCartDisplay() {
         const cart = JSON.parse(localStorage.getItem("cart"));
         let total = 0;
@@ -3439,14 +3630,23 @@
                 <div class="cart-item-name">${item.menuName}</div>
                 <div class="cart-item-serving">${item.servingType}</div>
                 ${
-                  item.type === "pempek" && item.servingType === "Frozen"
-                    ? `<div class="cart-item-details">Pempek mentah beku</div>`
+                  item.type === "pempek" && item.servingType === "Dine In"
+                    ? `<div class="cart-item-details">Disantap di tempat</div>`
+                    : item.type === "pempek" && item.servingType === "Take Away"
+                    ? `<div class="cart-item-details">Dibawa pulang</div>`
                     : item.type === "pempek" &&
                       item.servingType === "Siap Santap"
-                    ? `<div class="cart-item-details">Pempek matang dengan kuah</div>`
+                    ? `<div class="cart-item-details">Pempek matang siap santap</div>`
+                    : item.type === "pempek" && item.servingType === "Frozen"
+                    ? `<div class="cart-item-details">Pempek mentah beku</div>`
                     : item.type === "minuman" && item.servingType === "Dine In"
                     ? `<div class="cart-item-details">Dilayani di tempat</div>`
                     : `<div class="cart-item-details">Dikemas untuk dibawa</div>`
+                }
+                ${
+                  item.notes
+                    ? `<div class="cart-item-notes">Catatan: ${item.notes}</div>`
+                    : ""
                 }
               </div>
               <div class="cart-item-actions">
@@ -3564,6 +3764,7 @@
                   ? `<br><small>Penyajian: ${item.servingType}</small>`
                   : `<br><small>${item.servingType}</small>`
               }
+              ${item.notes ? `<br><small>Catatan: ${item.notes}</small>` : ""}
             </div>
             <div>Rp ${(item.price * item.quantity).toLocaleString(
               "id-ID"
@@ -3604,7 +3805,7 @@
         openModal(checkoutModal);
       }
 
-      // PERBAIKAN: Create WhatsApp message for cart checkout - FIXED VERSION
+      // PERBAIKAN: Create WhatsApp message for cart checkout - FIXED VERSION dengan catatan per item
       function createWhatsAppMessage(orderData) {
         let message = "Halo Pempek Tojotojo, saya ingin memesan:\n\n";
 
@@ -3617,6 +3818,9 @@
           message += index + 1 + ". " + item.menuName + "\n";
           message += "   Jumlah: " + item.quantity + "\n";
           message += "   Penyajian: " + item.servingType + "\n";
+          if (item.notes) {
+            message += "   Catatan: " + item.notes + "\n";
+          }
           message +=
             "   Harga: Rp " +
             (item.price * item.quantity).toLocaleString("id-ID") +
@@ -3627,7 +3831,10 @@
           "TOTAL: Rp " + orderData.total.toLocaleString("id-ID") + "\n\n";
 
         if (orderData.notes && orderData.notes.trim() !== "") {
-          message += "Catatan: " + orderData.notes + "\n\n";
+          message +=
+            "Catatan Tambahan untuk Seluruh Pesanan: " +
+            orderData.notes +
+            "\n\n";
         }
 
         message += "KODE PESANAN: " + orderData.id + "\n\n";
@@ -3877,7 +4084,7 @@
           // Set serving type yang sesuai
           if (menuType === "pempek") {
             document.getElementById("servingTypeGroup").style.display = "block";
-            document.getElementById("frozen").checked = true;
+            document.getElementById("dineIn").checked = true;
           } else {
             // Untuk minuman, sembunyikan opsi penyajian pempek
             document.getElementById("servingTypeGroup").style.display = "none";
@@ -4222,9 +4429,9 @@
           "Jumlah: " +
           orderData.quantity +
           "\n" +
-          (orderData.servingType
-            ? "Penyajian: " + orderData.servingType + "\n"
-            : "") +
+          "Penyajian: " +
+          orderData.servingType +
+          "\n" +
           "Catatan: " +
           (orderData.notes || "-") +
           "\n\n" +
@@ -4259,7 +4466,7 @@
 
         // Reset to default values
         document.getElementById("quantity").value = 1;
-        document.getElementById("frozen").checked = true;
+        document.getElementById("dineIn").checked = true;
         document.getElementById("servingTypeGroup").style.display = "block";
 
         // Auto-fill user data again
@@ -4439,10 +4646,3 @@
     </script>
   </body>
 </html>
-
-
-
-
-
-
-
