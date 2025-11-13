@@ -1121,6 +1121,129 @@
         display: block;
       }
 
+      /* PERBAIKAN: Visitor Tracking Styles */
+      .visitor-tracker {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background: var(--primary);
+        color: white;
+        padding: 10px 15px;
+        border-radius: 5px;
+        font-size: 0.9rem;
+        z-index: 9999;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s;
+      }
+
+      .visitor-tracker.hidden {
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      .visitor-toggle {
+        position: absolute;
+        top: -10px;
+        right: -10px;
+        background: var(--accent);
+        color: var(--primary);
+        border: none;
+        border-radius: 50%;
+        width: 25px;
+        height: 25px;
+        font-size: 0.8rem;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      /* Admin Panel Styles */
+      .admin-panel {
+        position: fixed;
+        top: 80px;
+        right: 20px;
+        background: var(--light);
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        padding: 20px;
+        z-index: 9998;
+        width: 300px;
+        max-height: 80vh;
+        overflow-y: auto;
+        display: none;
+      }
+
+      .admin-panel.active {
+        display: block;
+      }
+
+      .admin-panel h3 {
+        color: var(--primary);
+        margin-bottom: 15px;
+        border-bottom: 2px solid var(--accent);
+        padding-bottom: 10px;
+      }
+
+      .visitor-stats {
+        margin-bottom: 20px;
+      }
+
+      .stat-item {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 10px;
+        padding: 8px;
+        background: #f9f9f9;
+        border-radius: 5px;
+      }
+
+      .stat-label {
+        font-weight: 500;
+      }
+
+      .stat-value {
+        font-weight: 600;
+        color: var(--primary);
+      }
+
+      .admin-toggle {
+        position: fixed;
+        top: 80px;
+        right: 20px;
+        background: var(--primary);
+        color: white;
+        border: none;
+        border-radius: 5px;
+        padding: 8px 15px;
+        cursor: pointer;
+        z-index: 9999;
+        font-size: 0.9rem;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+      }
+
+      .admin-toggle:hover {
+        background: #600000;
+      }
+
+      .toggle-visibility {
+        background: var(--secondary);
+        color: white;
+        border: none;
+        border-radius: 5px;
+        padding: 8px 15px;
+        cursor: pointer;
+        width: 100%;
+        margin-top: 10px;
+        font-weight: 500;
+      }
+
+      .toggle-visibility:hover {
+        background: #1e7a1e;
+      }
+
       /* PERBAIKAN: Responsive adjustments untuk scroll */
       @media (max-width: 992px) {
         .about-content,
@@ -1205,6 +1328,18 @@
         .cart-items {
           max-height: 300px;
         }
+
+        /* PERBAIKAN: Visitor tracker responsive */
+        .visitor-tracker {
+          bottom: 10px;
+          right: 10px;
+          font-size: 0.8rem;
+        }
+
+        .admin-panel {
+          width: 280px;
+          right: 10px;
+        }
       }
 
       @media (max-width: 576px) {
@@ -1219,6 +1354,10 @@
         .modal-content {
           padding: 20px;
           margin: 10% auto;
+        }
+
+        .admin-panel {
+          width: 260px;
         }
       }
 
@@ -1237,7 +1376,7 @@
     <!-- Header -->
     <header>
       <div class="container header-container">
-        <a href="#" class="logo">Pempek <span>Tojotojo</span></a>
+        <a href="#" class="logo">Pempek <span>Tojo Tojo</span></a>
         <div class="mobile-menu">
           <i class="fas fa-bars"></i>
         </div>
@@ -1286,6 +1425,51 @@
         </div>
       </div>
     </header>
+
+    <!-- PERBAIKAN: Visitor Tracker -->
+    <div class="visitor-tracker" id="visitorTracker">
+      <button class="visitor-toggle" id="visitorToggle">
+        <i class="fas fa-eye-slash"></i>
+      </button>
+      <div id="visitorCount">Total: 0</div>
+      <div id="activeUsers">Aktif: 0</div>
+    </div>
+
+    <!-- PERBAIKAN: Admin Panel -->
+    <button class="admin-toggle" id="adminToggle" style="display: none">
+      <i class="fas fa-chart-bar"></i> Stats
+    </button>
+
+    <div class="admin-panel" id="adminPanel">
+      <h3>Statistik Pengunjung</h3>
+
+      <div class="visitor-stats">
+        <div class="stat-item">
+          <span class="stat-label">Total Pengunjung:</span>
+          <span class="stat-value" id="statTotalVisitors">0</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-label">Pengunjung Hari Ini:</span>
+          <span class="stat-value" id="statTodayVisitors">0</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-label">Pengunjung Aktif:</span>
+          <span class="stat-value" id="statActiveVisitors">0</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-label">Pengunjung Bulan Ini:</span>
+          <span class="stat-value" id="statMonthVisitors">0</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-label">Rata-rata Waktu:</span>
+          <span class="stat-value" id="statAvgTime">0m</span>
+        </div>
+      </div>
+
+      <button class="toggle-visibility" id="toggleVisibility">
+        <i class="fas fa-eye"></i> Tampilkan Tracker
+      </button>
+    </div>
 
     <!-- Serving Options Modal - DIPERBAIKI -->
     <div id="servingModal" class="modal">
@@ -1417,7 +1601,7 @@
     <div id="authModal" class="modal">
       <div class="modal-content">
         <span class="close">&times;</span>
-        <h2>Akun Pempek Tojotojo</h2>
+        <h2>Akun Pempek Tojo Tojo</h2>
 
         <div class="form-tabs">
           <button class="form-tab active" data-tab="login">Login</button>
@@ -1691,7 +1875,7 @@
     <!-- Hero Section -->
     <section class="hero" id="home">
       <div class="container hero-content">
-        <h1>Pempek Tojotojo</h1>
+        <h1>Pempek Tojo Tojo</h1>
         <p>The best Authentic from Lubuklinggau</p>
         <button class="btn" id="heroOrderBtn">Pesan Sekarang</button>
         <p style="margin-top: 15px; font-size: 0.9rem">
@@ -1711,7 +1895,7 @@
         </div>
         <div class="about-content fade-in">
           <div class="about-text">
-            <h3>Sejarah Pempek Tojotojo</h3>
+            <h3>Sejarah Pempek Tojo Tojo</h3>
             <p>
               Pempek TojoTojo berdiri pada tahun 2022 di Lubuklinggau, berawal
               dari keinginan untuk menghadirkan cita rasa pempek khas Palembang
@@ -1721,9 +1905,9 @@
             </p>
             <p>
               Dengan menggunakan bahan-bahan segar dan resep turun-temurun,
-              Pempek TojoTojo berhasil menarik perhatian masyarakat setempat
+              Pempek Tojo Tojo berhasil menarik perhatian masyarakat setempat
               melalui kelezatan rasa dan pelayanan yang ramah. Dalam waktu
-              singkat, TojoTojo berkembang menjadi salah satu brand kuliner
+              singkat, Tojo Tojo berkembang menjadi salah satu brand kuliner
               lokal yang dipercaya untuk menyajikan pempek dengan cita rasa
               premium dan tampilan yang menarik.
             </p>
@@ -2669,19 +2853,291 @@
     <footer>
       <div class="container">
         <div class="footer-content">
-          <div class="footer-logo">Pempek <span>Tojotojo</span></div>
+          <div class="footer-logo">Pempek <span>Tojo Tojo</span></div>
           <div class="footer-social">
             <a href="#"><i class="fab fa-instagram"></i></a>
             <a href="#"><i class="fab fa-tiktok"></i></a>
           </div>
           <div class="copyright">
-            © 2025 Pempek Tojotojo. All rights reserved.
+            © 2025 Pempek Tojo Tojo. All rights reserved.
           </div>
         </div>
       </div>
     </footer>
 
     <script>
+      // PERBAIKAN: Visitor Tracking System
+      class VisitorTracker {
+        constructor() {
+          this.storageKey = "pempekTojotojoVisitors";
+          this.sessionKey = "pempekTojotojoSession";
+          this.visibilityKey = "visitorTrackerVisible";
+          this.init();
+        }
+
+        init() {
+          // Inisialisasi data pengunjung jika belum ada
+          if (!localStorage.getItem(this.storageKey)) {
+            this.resetVisitorData();
+          }
+
+          // Inisialisasi sesi pengguna saat ini
+          this.initSession();
+
+          // Update data pengunjung
+          this.updateVisitorData();
+
+          // Update tampilan
+          this.updateDisplay();
+
+          // Set interval untuk update pengunjung aktif
+          setInterval(() => {
+            this.updateActiveUsers();
+          }, 30000); // Update setiap 30 detik
+
+          // Set interval untuk update rata-rata waktu
+          setInterval(() => {
+            this.updateAverageTime();
+          }, 60000); // Update setiap 1 menit
+        }
+
+        resetVisitorData() {
+          const today = new Date().toISOString().split("T")[0];
+          const data = {
+            total: 0,
+            today: 0,
+            todayDate: today,
+            month: 0,
+            monthYear:
+              new Date().getFullYear() + "-" + (new Date().getMonth() + 1),
+            sessions: [],
+            activeSessions: [],
+          };
+          localStorage.setItem(this.storageKey, JSON.stringify(data));
+          return data;
+        }
+
+        initSession() {
+          let sessionId = localStorage.getItem(this.sessionKey);
+
+          if (!sessionId) {
+            sessionId = this.generateSessionId();
+            localStorage.setItem(this.sessionKey, sessionId);
+
+            // Tambah pengunjung baru
+            this.addNewVisitor(sessionId);
+          }
+
+          this.sessionId = sessionId;
+          this.updateSessionActivity();
+        }
+
+        generateSessionId() {
+          return (
+            "session_" +
+            Date.now() +
+            "_" +
+            Math.random().toString(36).substr(2, 9)
+          );
+        }
+
+        addNewVisitor(sessionId) {
+          const data = this.getVisitorData();
+          const today = new Date().toISOString().split("T")[0];
+          const currentMonth =
+            new Date().getFullYear() + "-" + (new Date().getMonth() + 1);
+
+          // Reset data hari ini jika sudah berganti hari
+          if (data.todayDate !== today) {
+            data.today = 0;
+            data.todayDate = today;
+          }
+
+          // Reset data bulan ini jika sudah berganti bulan
+          if (data.monthYear !== currentMonth) {
+            data.month = 0;
+            data.monthYear = currentMonth;
+          }
+
+          data.total++;
+          data.today++;
+          data.month++;
+
+          // Tambah sesi baru
+          data.sessions.push({
+            id: sessionId,
+            startTime: new Date().toISOString(),
+            endTime: null,
+            duration: 0,
+          });
+
+          localStorage.setItem(this.storageKey, JSON.stringify(data));
+        }
+
+        updateSessionActivity() {
+          const data = this.getVisitorData();
+          const sessionIndex = data.sessions.findIndex(
+            (s) => s.id === this.sessionId
+          );
+
+          if (sessionIndex !== -1) {
+            // Update waktu aktif sesi
+            data.sessions[sessionIndex].lastActivity = new Date().toISOString();
+            localStorage.setItem(this.storageKey, JSON.stringify(data));
+          }
+
+          // Update sesi aktif
+          this.updateActiveSessions();
+        }
+
+        updateActiveSessions() {
+          const data = this.getVisitorData();
+          const now = new Date();
+          const activeThreshold = new Date(now.getTime() - 5 * 60 * 1000); // 5 menit yang lalu
+
+          // Filter sesi yang aktif (aktivitas dalam 5 menit terakhir)
+          data.activeSessions = data.sessions.filter((session) => {
+            if (!session.lastActivity) return false;
+            const lastActivity = new Date(session.lastActivity);
+            return lastActivity > activeThreshold;
+          });
+
+          localStorage.setItem(this.storageKey, JSON.stringify(data));
+        }
+
+        updateActiveUsers() {
+          this.updateSessionActivity();
+          this.updateDisplay();
+        }
+
+        updateAverageTime() {
+          const data = this.getVisitorData();
+          const completedSessions = data.sessions.filter((s) => s.endTime);
+
+          if (completedSessions.length > 0) {
+            const totalDuration = completedSessions.reduce((sum, session) => {
+              return sum + (session.duration || 0);
+            }, 0);
+
+            data.averageTime = Math.round(
+              totalDuration / completedSessions.length
+            );
+            localStorage.setItem(this.storageKey, JSON.stringify(data));
+          }
+        }
+
+        getVisitorData() {
+          const data = JSON.parse(localStorage.getItem(this.storageKey));
+          return data || this.resetVisitorData();
+        }
+
+        updateVisitorData() {
+          this.updateSessionActivity();
+        }
+
+        updateDisplay() {
+          const data = this.getVisitorData();
+          const activeCount = data.activeSessions
+            ? data.activeSessions.length
+            : 0;
+
+          // Update visitor tracker
+          document.getElementById(
+            "visitorCount"
+          ).textContent = `Total: ${data.today}`;
+          document.getElementById(
+            "activeUsers"
+          ).textContent = `Aktif: ${activeCount}`;
+
+          // Update admin panel jika terbuka
+          if (
+            document.getElementById("adminPanel").classList.contains("active")
+          ) {
+            document.getElementById("statTotalVisitors").textContent =
+              data.total;
+            document.getElementById("statTodayVisitors").textContent =
+              data.today;
+            document.getElementById("statActiveVisitors").textContent =
+              activeCount;
+            document.getElementById("statMonthVisitors").textContent =
+              data.month;
+
+            const avgTime = data.averageTime
+              ? Math.round(data.averageTime / 60)
+              : 0;
+            document.getElementById("statAvgTime").textContent = `${avgTime}m`;
+          }
+        }
+
+        toggleVisibility() {
+          const tracker = document.getElementById("visitorTracker");
+          const isVisible = !tracker.classList.contains("hidden");
+
+          if (isVisible) {
+            tracker.classList.add("hidden");
+            localStorage.setItem(this.visibilityKey, "false");
+          } else {
+            tracker.classList.remove("hidden");
+            localStorage.setItem(this.visibilityKey, "true");
+          }
+
+          this.updateToggleButton();
+        }
+
+        updateToggleButton() {
+          const tracker = document.getElementById("visitorTracker");
+          const toggleBtn = document.getElementById("visitorToggle");
+          const isVisible = !tracker.classList.contains("hidden");
+
+          if (isVisible) {
+            toggleBtn.innerHTML = '<i class="fas fa-eye-slash"></i>';
+            document.getElementById("toggleVisibility").innerHTML =
+              '<i class="fas fa-eye-slash"></i> Sembunyikan Tracker';
+          } else {
+            toggleBtn.innerHTML = '<i class="fas fa-eye"></i>';
+            document.getElementById("toggleVisibility").innerHTML =
+              '<i class="fas fa-eye"></i> Tampilkan Tracker';
+          }
+        }
+
+        loadVisibilityPreference() {
+          const isVisible =
+            localStorage.getItem(this.visibilityKey) !== "false";
+          const tracker = document.getElementById("visitorTracker");
+
+          if (!isVisible) {
+            tracker.classList.add("hidden");
+          }
+
+          this.updateToggleButton();
+        }
+      }
+
+      // Inisialisasi sistem tracking
+      const visitorTracker = new VisitorTracker();
+
+      // Event listener untuk toggle visibility
+      document.getElementById("visitorToggle").addEventListener("click", () => {
+        visitorTracker.toggleVisibility();
+      });
+
+      document
+        .getElementById("toggleVisibility")
+        .addEventListener("click", () => {
+          visitorTracker.toggleVisibility();
+        });
+
+      // PERBAIKAN: Admin Panel Toggle
+      document.getElementById("adminToggle").addEventListener("click", () => {
+        const panel = document.getElementById("adminPanel");
+        panel.classList.toggle("active");
+
+        // Refresh data saat panel dibuka
+        if (panel.classList.contains("active")) {
+          visitorTracker.updateDisplay();
+        }
+      });
+
       // PERBAIKAN: Fungsi untuk mencegah scroll pada background ketika modal terbuka
       function openModal(modal) {
         modal.style.display = "block";
@@ -3273,7 +3729,7 @@
       const whatsappBtn = document.getElementById("whatsappBtn");
       const formTabs = document.querySelectorAll(".form-tab");
 
-      // Check if user is logged in
+      // PERBAIKAN: Check login status untuk menampilkan admin panel
       function checkLoginStatus() {
         const isLoggedIn = localStorage.getItem("isLoggedIn");
         const currentUser = localStorage.getItem("currentUser");
@@ -3283,6 +3739,14 @@
           loginMenu.style.display = "none";
           updateOrderButtons(true);
           updateCartDisplay();
+
+          // Tampilkan admin panel hanya untuk user admin
+          if (currentUser === "admin") {
+            document.getElementById("adminToggle").style.display = "block";
+          } else {
+            document.getElementById("adminToggle").style.display = "none";
+            document.getElementById("adminPanel").classList.remove("active");
+          }
 
           // Auto-fill user data in order form
           const users = JSON.parse(localStorage.getItem("users"));
@@ -3295,6 +3759,8 @@
           userMenu.style.display = "none";
           loginMenu.style.display = "flex";
           updateOrderButtons(false);
+          document.getElementById("adminToggle").style.display = "none";
+          document.getElementById("adminPanel").classList.remove("active");
           // Reset cart count for logged out users
           cartCount.textContent = "0";
         }
@@ -3334,20 +3800,9 @@
         }
       }
 
-      // Modal functions
-      function openModal(modal) {
-        modal.style.display = "block";
-        document.body.style.overflow = "hidden";
-      }
-
       function openAuthModal(tab = "login") {
         openModal(authModal);
         switchTab(tab);
-      }
-
-      function closeModal(modal) {
-        modal.style.display = "none";
-        document.body.style.overflow = "auto";
       }
 
       // Switch between login and register tabs
@@ -3943,6 +4398,39 @@
         }
       `;
       document.head.appendChild(style);
+
+      // PERBAIKAN: Load visibility preference saat halaman dimuat
+      window.addEventListener("load", () => {
+        visitorTracker.loadVisibilityPreference();
+      });
+
+      // PERBAIKAN: Track page visibility changes
+      document.addEventListener("visibilitychange", function () {
+        if (!document.hidden) {
+          // Page is visible again, update session activity
+          visitorTracker.updateSessionActivity();
+        }
+      });
+
+      // PERBAIKAN: Track beforeunload untuk mencatat waktu sesi berakhir
+      window.addEventListener("beforeunload", function () {
+        const data = visitorTracker.getVisitorData();
+        const sessionIndex = data.sessions.findIndex(
+          (s) => s.id === visitorTracker.sessionId
+        );
+
+        if (sessionIndex !== -1) {
+          const session = data.sessions[sessionIndex];
+          const startTime = new Date(session.startTime);
+          const endTime = new Date();
+          const duration = Math.round((endTime - startTime) / 1000); // dalam detik
+
+          data.sessions[sessionIndex].endTime = endTime.toISOString();
+          data.sessions[sessionIndex].duration = duration;
+
+          localStorage.setItem(visitorTracker.storageKey, JSON.stringify(data));
+        }
+      });
 
       // Initialize
       initializeData();
