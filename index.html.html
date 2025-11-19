@@ -3905,10 +3905,11 @@
 
         // Remove notification after animation
         setTimeout(() => {
-          if (notification.parentNode) {
-            notification.parentNode.removeChild(notification);
+          if (successMessage.parentNode) {
+            successMessage.parentNode.removeChild(successMessage);
           }
-        }, 2500);
+          closeModal(checkoutModal);
+        }, 5000);
       }
 
       // PERBAIKAN: Update checkout summary untuk menampilkan jenis produk
@@ -4048,6 +4049,9 @@
           "?text=" +
           encodeURIComponent(message);
 
+        console.log("WhatsApp URL:", whatsappUrl);
+        console.log("Message:", message);
+
         console.log("WhatsApp URL:", whatsappUrl); // Untuk debugging
         console.log("Message:", message); // Untuk debugging
 
@@ -4058,10 +4062,10 @@
         const successMessage = document.createElement("div");
         successMessage.className = "success-message";
         successMessage.innerHTML = `
-              <strong>✅ Pesanan Berhasil!</strong><br>
-              Kode Pesanan: <strong>${orderData.id}</strong><br>
-              WhatsApp sedang dibuka untuk mengirim pesanan...
-          `;
+        <strong>✅ Pesanan Berhasil!</strong><br>
+        Kode Pesanan: <strong>${orderData.id}</strong><br>
+        WhatsApp sedang dibuka untuk mengirim pesanan...
+    `;
 
         checkoutForm.parentNode.insertBefore(successMessage, checkoutForm);
         checkoutForm.reset();
@@ -4755,10 +4759,10 @@
         const successMessage = document.createElement("div");
         successMessage.className = "success-message";
         successMessage.innerHTML = `
-          <strong>✅ Pesanan Berhasil!</strong><br>
-          Kode Pesanan: <strong>${orderData.id}</strong><br>
-          WhatsApp sedang dibuka untuk mengirim pesanan...
-        `;
+    <strong>✅ Pesanan Berhasil!</strong><br>
+    Kode Pesanan: <strong>${orderData.id}</strong><br>
+    WhatsApp sedang dibuka untuk mengirim pesanan...
+  `;
 
         orderForm.parentNode.insertBefore(successMessage, orderForm);
         orderForm.reset();
@@ -4871,12 +4875,9 @@
 
       // Generate Order ID
       function generateOrderId() {
-        return (
-          "ORDER-" +
-          Date.now() +
-          "-" +
-          Math.random().toString(36).substr(2, 5).toUpperCase()
-        );
+        const timestamp = Date.now().toString(36); // Konversi timestamp ke base36
+        const random = Math.random().toString(36).substr(2, 4).toUpperCase(); // 4 karakter random
+        return `P-${timestamp}-${random}`;
       }
 
       // Mobile Menu Toggle
