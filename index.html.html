@@ -539,6 +539,10 @@
         border-radius: 10px;
       }
 
+      .cart-items::-webkit-scrollbar-thumb:hover {
+        background: #600000;
+      }
+
       .cart-item {
         display: flex;
         justify-content: space-between;
@@ -1400,6 +1404,103 @@
         background: #1e7a1e;
       }
 
+      /* PERBAIKAN: Order Guide Styles */
+      .order-guide-steps {
+        margin: 25px 0;
+      }
+
+      .guide-step {
+        display: flex;
+        margin-bottom: 20px;
+        align-items: flex-start;
+      }
+
+      .step-number {
+        background: var(--primary);
+        color: white;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        margin-right: 15px;
+        flex-shrink: 0;
+      }
+
+      .step-content h3 {
+        margin: 0 0 8px 0;
+        color: var(--primary);
+        font-size: 1.1rem;
+      }
+
+      .step-content p {
+        margin: 0 0 5px 0;
+        font-size: 0.95rem;
+        line-height: 1.5;
+      }
+
+      .step-content em {
+        color: var(--secondary);
+        font-style: italic;
+      }
+
+      .guide-tips {
+        background: #f8f9fa;
+        padding: 20px;
+        border-radius: 8px;
+        margin: 20px 0;
+        border-left: 4px solid var(--accent);
+      }
+
+      .guide-tips h3 {
+        color: var(--primary);
+        margin-bottom: 10px;
+      }
+
+      .guide-tips ul {
+        margin: 0;
+        padding-left: 20px;
+      }
+
+      .guide-tips li {
+        margin-bottom: 8px;
+        font-size: 0.95rem;
+      }
+
+      .guide-actions {
+        display: flex;
+        gap: 10px;
+        margin-top: 20px;
+      }
+
+      .guide-actions .btn {
+        flex: 1;
+      }
+
+      /* PERBAIKAN: Order Info Box */
+      .order-info-box {
+        display: flex;
+        align-items: center;
+        background: #e7f3ff;
+        padding: 15px;
+        border-radius: 8px;
+        margin-bottom: 25px;
+        border-left: 4px solid var(--primary);
+      }
+
+      .info-icon {
+        font-size: 1.5rem;
+        color: var(--primary);
+        margin-right: 15px;
+      }
+
+      .info-content {
+        flex: 1;
+        font-size: 0.95rem;
+      }
+
       /* PERBAIKAN: Responsive adjustments untuk scroll */
       @media (max-width: 992px) {
         .about-content,
@@ -1500,6 +1601,31 @@
         .admin-panel {
           width: 280px;
           right: 10px;
+        }
+
+        /* PERBAIKAN: Responsive guide steps */
+        .guide-step {
+          flex-direction: column;
+          text-align: center;
+        }
+
+        .step-number {
+          margin-right: 0;
+          margin-bottom: 10px;
+        }
+
+        .guide-actions {
+          flex-direction: column;
+        }
+
+        .order-info-box {
+          flex-direction: column;
+          text-align: center;
+        }
+
+        .info-icon {
+          margin-right: 0;
+          margin-bottom: 10px;
         }
       }
 
@@ -1632,6 +1758,126 @@
       <button class="toggle-visibility" id="toggleVisibility">
         <i class="fas fa-eye"></i> Tampilkan Tracker
       </button>
+    </div>
+
+    <!-- PERBAIKAN: Panduan Pemesanan Modal -->
+    <div id="orderGuideModal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Panduan Pemesanan</h2>
+
+        <div class="order-guide-steps">
+          <div class="guide-step">
+            <div class="step-number">1</div>
+            <div class="step-content">
+              <h3>Login atau Daftar</h3>
+              <p>
+                Pastikan Anda sudah login atau daftar akun terlebih dahulu untuk
+                dapat melakukan pemesanan.
+              </p>
+            </div>
+          </div>
+
+          <div class="guide-step">
+            <div class="step-number">2</div>
+            <div class="step-content">
+              <h3>Pilih Menu</h3>
+              <p>
+                Pilih menu pempek atau minuman yang ingin dipesan dari daftar
+                menu yang tersedia.
+              </p>
+            </div>
+          </div>
+
+          <div class="guide-step">
+            <div class="step-number">3</div>
+            <div class="step-content">
+              <h3>Tentukan Metode Penyajian</h3>
+              <p>
+                Pilih metode penyajian: <strong>Dine In</strong> (makan di
+                tempat) atau <strong>Take Away</strong> (dibungkus).
+              </p>
+              <p>
+                <em>Khusus pempek Take Away:</em> Pilih jenis produk
+                <strong>Siap Saji</strong> atau <strong>Frozen</strong>.
+              </p>
+            </div>
+          </div>
+
+          <div class="guide-step">
+            <div class="step-number">4</div>
+            <div class="step-content">
+              <h3>Tentukan Jumlah</h3>
+              <p>
+                Atur jumlah pesanan yang diinginkan menggunakan tombol +/- atau
+                ketik langsung.
+              </p>
+            </div>
+          </div>
+
+          <div class="guide-step">
+            <div class="step-number">5</div>
+            <div class="step-content">
+              <h3>Pilih Cara Pemesanan</h3>
+              <p>
+                <strong>Keranjang:</strong> Tambahkan ke keranjang untuk memesan
+                beberapa item sekaligus.
+              </p>
+              <p>
+                <strong>Pesan Langsung:</strong> Langsung pesan item tersebut
+                tanpa menambah ke keranjang.
+              </p>
+            </div>
+          </div>
+
+          <div class="guide-step">
+            <div class="step-number">6</div>
+            <div class="step-content">
+              <h3>Isi Data Diri</h3>
+              <p>Lengkapi nama dan nomor WhatsApp untuk konfirmasi pesanan.</p>
+            </div>
+          </div>
+
+          <div class="guide-step">
+            <div class="step-number">7</div>
+            <div class="step-content">
+              <h3>Konfirmasi & Kirim</h3>
+              <p>
+                Pesanan akan dikirim via WhatsApp secara otomatis. Simpan kode
+                pesanan untuk referensi.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="guide-tips">
+          <h3>Tips Pemesanan:</h3>
+          <ul>
+            <li>
+              Untuk pempek <strong>Frozen</strong>, pastikan Anda memiliki cara
+              untuk menyimpannya dengan baik
+            </li>
+            <li>
+              Tambahkan catatan khusus (level pedas, tanpa bawang, dll) di kolom
+              catatan
+            </li>
+            <li>Simpan kode pesanan untuk memudahkan pengecekan status</li>
+            <li>Pesanan akan diproses setelah konfirmasi via WhatsApp</li>
+          </ul>
+        </div>
+
+        <div class="guide-actions">
+          <button
+            class="btn"
+            onclick="closeModal(document.getElementById('orderGuideModal'))"
+          >
+            <i class="fas fa-check"></i> Mengerti
+          </button>
+          <button class="btn btn-secondary" onclick="openAuthModal('register')">
+            <i class="fas fa-user-plus"></i> Daftar Sekarang
+          </button>
+        </div>
+      </div>
     </div>
 
     <!-- Serving Options Modal - DIPERBAIKI dengan OPSI FROZEN/SIAP SAJI -->
@@ -2185,6 +2431,13 @@
         <h1>Pempek Tojo Tojo</h1>
         <p>The best Authentic from Lubuklinggau</p>
         <button class="btn" id="heroOrderBtn">Pesan Sekarang</button>
+        <button
+          class="btn btn-secondary"
+          id="orderGuideBtn"
+          style="margin-left: 10px"
+        >
+          <i class="fas fa-info-circle"></i> Cara Pemesanan
+        </button>
         <p style="margin-top: 15px; font-size: 0.9rem">
           Belum punya akun?
           <button class="btn-link" onclick="openAuthModal('register')">
@@ -2247,6 +2500,25 @@
         <div class="section-title">
           <h2>Menu Pempek</h2>
         </div>
+
+        <!-- PERBAIKAN: Info Box Panduan Pemesanan -->
+        <div class="order-info-box">
+          <div class="info-icon">
+            <i class="fas fa-info-circle"></i>
+          </div>
+          <div class="info-content">
+            <strong>Tips Pemesanan:</strong> Klik "Keranjang" untuk memesan
+            beberapa item, atau "Pesan Langsung" untuk memesan item tunggal.
+            <button
+              class="btn-link"
+              onclick="openModal(document.getElementById('orderGuideModal'))"
+              style="margin-left: 5px"
+            >
+              Lihat panduan lengkap
+            </button>
+          </div>
+        </div>
+
         <div class="menu-grid">
           <!-- Paket Pempek Wong Kito 1 -->
           <div class="menu-card fade-in">
@@ -2665,6 +2937,25 @@
         <div class="section-title">
           <h2>Menu Minuman</h2>
         </div>
+
+        <!-- PERBAIKAN: Info Box Panduan Pemesanan -->
+        <div class="order-info-box">
+          <div class="info-icon">
+            <i class="fas fa-info-circle"></i>
+          </div>
+          <div class="info-content">
+            <strong>Tips Pemesanan:</strong> Klik "Keranjang" untuk memesan
+            beberapa item, atau "Pesan Langsung" untuk memesan item tunggal.
+            <button
+              class="btn-link"
+              onclick="openModal(document.getElementById('orderGuideModal'))"
+              style="margin-left: 5px"
+            >
+              Lihat panduan lengkap
+            </button>
+          </div>
+        </div>
+
         <div class="menu-grid">
           <!-- Ice Tea -->
           <div class="menu-card fade-in">
@@ -3090,6 +3381,7 @@
             </p>
             <p><i class="fas fa-clock"></i> Setiap hari 09.00–21.00</p>
             <p><i class="fas fa-phone"></i> 0895-6110-67777</p>
+            <p><i class="fas fa-envelope"></i> info@pempektojotojo.com</p>
             <p>
               Kami berada di pusat kota Solo, mudah dijangkau dari berbagai
               arah.
@@ -3440,6 +3732,49 @@
           visitorTracker.updateDisplay();
         }
       });
+
+      // PERBAIKAN: Order Guide System
+      const orderGuideModal = document.getElementById("orderGuideModal");
+      const orderGuideBtn = document.getElementById("orderGuideBtn");
+
+      // Event listener untuk tombol panduan
+      orderGuideBtn.addEventListener("click", () => {
+        openModal(orderGuideModal);
+      });
+
+      // PERBAIKAN: Fungsi untuk menampilkan panduan pemesanan otomatis untuk pengguna baru
+      function showOrderGuideForNewUsers() {
+        const hasSeenGuide = localStorage.getItem("hasSeenOrderGuide");
+        const isLoggedIn = localStorage.getItem("isLoggedIn");
+
+        if (!hasSeenGuide && !isLoggedIn) {
+          // Tampilkan panduan setelah 3 detik
+          setTimeout(() => {
+            openModal(orderGuideModal);
+            localStorage.setItem("hasSeenOrderGuide", "true");
+          }, 3000);
+        }
+      }
+
+      // PERBAIKAN: Tambahkan tooltip untuk tombol pemesanan
+      function addOrderTooltips() {
+        const addToCartButtons = document.querySelectorAll(".add-to-cart-btn");
+        const orderButtons = document.querySelectorAll(".order-btn");
+
+        addToCartButtons.forEach((btn) => {
+          btn.setAttribute(
+            "title",
+            "Tambahkan ke keranjang untuk memesan beberapa item sekaligus"
+          );
+        });
+
+        orderButtons.forEach((btn) => {
+          btn.setAttribute(
+            "title",
+            "Pesan langsung item ini tanpa menambah ke keranjang"
+          );
+        });
+      }
 
       // PERBAIKAN: Fungsi untuk mencegah scroll pada background ketika modal terbuka
       function openModal(modal) {
@@ -3965,11 +4300,10 @@
 
         // Remove notification after animation
         setTimeout(() => {
-          if (successMessage.parentNode) {
-            successMessage.parentNode.removeChild(successMessage);
+          if (notification.parentNode) {
+            notification.parentNode.removeChild(notification);
           }
-          closeModal(checkoutModal);
-        }, 5000);
+        }, 2500);
       }
 
       // PERBAIKAN: Update checkout summary untuk menampilkan jenis produk
@@ -5020,6 +5354,8 @@
       // PERBAIKAN: Load visibility preference saat halaman dimuat
       window.addEventListener("load", () => {
         visitorTracker.loadVisibilityPreference();
+        showOrderGuideForNewUsers();
+        addOrderTooltips();
       });
 
       // PERBAIKAN: Track page visibility changes
@@ -5057,4 +5393,3 @@
     </script>
   </body>
 </html>
-
