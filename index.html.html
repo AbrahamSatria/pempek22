@@ -55,7 +55,7 @@
       /* Header */
       header {
         background-color: var(--primary);
-        padding: 15px 0;
+        padding: 20px 0;
         position: fixed;
         width: 100%;
         top: 0;
@@ -69,15 +69,33 @@
         align-items: center;
       }
 
+      /* PERBAIKAN: Logo Styles dengan teks vertikal */
       .logo {
         color: var(--light);
         font-size: 1.8rem;
         font-weight: 700;
         text-decoration: none;
+        display: flex;
+        flex-direction: column;
+        line-height: 1.1;
+        text-align: center;
       }
 
       .logo span {
         color: var(--accent);
+        font-size: 1.4rem;
+        margin-top: -2px;
+      }
+
+      /* Logo untuk mode mobile */
+      @media (max-width: 768px) {
+        .logo {
+          font-size: 1.5rem;
+        }
+
+        .logo span {
+          font-size: 1.2rem;
+        }
       }
 
       nav ul {
@@ -123,7 +141,7 @@
         cursor: pointer;
       }
 
-      /* User Menu Styles */
+      /* PERBAIKAN: User Menu Styles dengan Tooltip */
       .user-menu {
         display: flex;
         gap: 10px;
@@ -134,17 +152,79 @@
         background: var(--accent);
         color: var(--primary);
         border: none;
-        padding: 8px 15px;
+        padding: 8px 12px;
         border-radius: 5px;
         cursor: pointer;
         font-weight: 600;
         transition: all 0.3s;
         font-size: 0.9rem;
+        position: relative;
       }
 
       .user-btn:hover {
         background: var(--light);
         transform: translateY(-2px);
+      }
+
+      /* Tooltip Styles */
+      .user-btn .tooltip {
+        visibility: hidden;
+        width: 80px;
+        background-color: var(--dark);
+        color: var(--light);
+        text-align: center;
+        border-radius: 6px;
+        padding: 5px;
+        position: absolute;
+        z-index: 1;
+        bottom: 125%;
+        left: 50%;
+        margin-left: -40px;
+        opacity: 0;
+        transition: opacity 0.3s;
+        font-size: 0.8rem;
+        font-weight: normal;
+      }
+
+      .user-btn .tooltip::after {
+        content: "";
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        margin-left: -5px;
+        border-width: 5px;
+        border-style: solid;
+        border-color: var(--dark) transparent transparent transparent;
+      }
+
+      .user-btn:hover .tooltip {
+        visibility: visible;
+        opacity: 1;
+      }
+
+      /* Cart Icon Styles */
+      .cart-icon {
+        position: relative;
+        margin-left: 20px;
+        cursor: pointer;
+        color: var(--light);
+        font-size: 1.2rem;
+      }
+
+      .cart-count {
+        position: absolute;
+        top: -8px;
+        right: -8px;
+        background-color: var(--accent);
+        color: var(--primary);
+        border-radius: 50%;
+        width: 20px;
+        height: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.8rem;
+        font-weight: bold;
       }
 
       /* Cart Icon Styles */
@@ -708,24 +788,6 @@
       .order-code {
         font-weight: 600;
         color: var(--primary);
-      }
-
-      .order-status {
-        display: inline-block;
-        padding: 3px 8px;
-        border-radius: 3px;
-        font-size: 0.8rem;
-        margin-left: 10px;
-      }
-
-      .status-pending {
-        background-color: #fff3cd;
-        color: #856404;
-      }
-
-      .status-completed {
-        background-color: #d1edff;
-        color: #004085;
       }
 
       /* PERBAIKAN: Checkout summary scrollable */
@@ -1493,10 +1555,12 @@
                 <span class="cart-count" id="cartCount">0</span>
               </div>
               <button class="user-btn" id="orderHistoryBtn">
-                <i class="fas fa-history"></i> Riwayat
+                <i class="fas fa-history"></i>
+                <span class="tooltip">Riwayat</span>
               </button>
               <button class="user-btn" id="logoutBtn">
-                <i class="fas fa-sign-out-alt"></i> Logout
+                <i class="fas fa-sign-out-alt"></i>
+                <span class="tooltip">Logout</span>
               </button>
             </li>
             <li class="user-menu" id="loginMenu">
@@ -4820,7 +4884,7 @@
         return message;
       }
 
-      // Display Order History
+      // Display Order History - DIPERBAIKI: urutan terbaru di atas dan hapus status
       function displayOrderHistory() {
         const orderHistory = document.getElementById("orderHistory");
         const orders = JSON.parse(localStorage.getItem("orders"));
@@ -4832,6 +4896,18 @@
             ? orders
             : orders.filter((order) => order.customer === currentUser);
 
+        // PERBAIKAN: Urutkan dari yang terbaru (berdasarkan ID/timestamp)
+        userOrders.sort((a, b) => {
+          // Extract timestamp dari ID atau gunakan orderDate
+          const timeA = a.id.includes("P-")
+            ? parseInt(a.id.split("-")[1], 36)
+            : new Date(a.orderDate).getTime();
+          const timeB = b.id.includes("P-")
+            ? parseInt(b.id.split("-")[1], 36)
+            : new Date(b.orderDate).getTime();
+          return timeB - timeA; // Descending (terbaru di atas)
+        });
+
         if (userOrders.length === 0) {
           orderHistory.innerHTML = "<p>Belum ada pesanan.</p>";
           return;
@@ -4840,27 +4916,26 @@
         orderHistory.innerHTML = userOrders
           .map(
             (order) => `
-                <div class="order-item">
-                    <div>
-                        <strong class="order-code">${order.id}</strong> 
-                        <span class="order-status status-${order.status}">${
-              order.status
-            }</span>
-                    </div>
-                    <div><strong>${order.menuItem}</strong> (${
-              order.quantity
-            }x) - ${order.servingType}${
+    <div class="order-item">
+      <div>
+        <strong class="order-code">${order.id}</strong>
+        <!-- STATUS DIHAPUS -->
+      </div>
+      <div><strong>${order.menuItem}</strong> (${order.quantity}x) - ${
+              order.servingType
+            }${
               order.productType && order.type === "pempek"
                 ? ` - ${order.productType}`
                 : ""
             }</div>
-                    <div>Nama: ${order.customerName} | Telp: ${
-              order.customerPhone
-            }</div>
-                    <div>Tanggal: ${order.orderDate}</div>
-                    ${order.notes ? `<div>Catatan: ${order.notes}</div>` : ""}
-                </div>
-            `
+      <div>Nama: ${order.customerName} | Telp: ${order.customerPhone}</div>
+      <div>Tanggal: ${order.orderDate}</div>
+      ${order.notes ? `<div>Catatan: ${order.notes}</div>` : ""}
+      <div>Total: Rp ${((order.price || 0) * order.quantity).toLocaleString(
+        "id-ID"
+      )}</div>
+    </div>
+  `
           )
           .join("");
       }
